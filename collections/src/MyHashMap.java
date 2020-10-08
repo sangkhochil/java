@@ -1,17 +1,29 @@
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class MyHashMap {
 	public void Add() {
 		HashMap<Integer, String> hashmap = new HashMap<Integer, String>();
-		hashmap.put(1, "Alam");
-		hashmap.put(2, "John");
-		hashmap.put(3, "Devid");
+		hashmap.put(10, "Alam");
+		hashmap.put(9, "John");
+		hashmap.put(11, "Devid");
 		hashmap.put(4, "Dhaka");
 		hashmap.put(null, "null value");
-		hashmap.put(5, null);
+		hashmap.put(3, null);
 		hashmap.put(null, null);
 
+		for (Map.Entry me : hashmap.entrySet()) {
+			System.out.println("Key: " + me.getKey() + " & Value: " + me.getValue());
+		}
+		System.out.println("===============================");
+		Iterator iterator = hashmap.entrySet().iterator();
+		while (iterator.hasNext()) {
+			Map.Entry me2 = (Map.Entry) iterator.next();
+			System.out.println("Key: " + me2.getKey() + " & Value: " + me2.getValue());
+		}
 		System.out.println(hashmap);
+		System.out.println("===============================");
 	}
 
 	public void Remove() {
@@ -47,10 +59,10 @@ public class MyHashMap {
 
 	public void Operation() {
 		HashMap<String, String> hashmap = new HashMap<>();
-		
+
 		boolean empty = hashmap.isEmpty();
 		System.out.println("is hashmap empty: " + empty);
-		
+
 		hashmap.put("Arpit", "Tech");
 		hashmap.put("John", "Sales");
 		hashmap.put("Martin", "HR");
@@ -58,7 +70,7 @@ public class MyHashMap {
 
 		System.out.println(hashmap);
 		System.out.println("size of hashmap: " + hashmap.size());
-		
+
 		System.out.println("Martin's department: " + hashmap.get("Martin"));
 		System.out.println("Robin's department: " + hashmap.get("Robin"));
 
@@ -69,7 +81,7 @@ public class MyHashMap {
 		if (hashmap.containsValue("Sales")) {
 			System.out.println("hashmap has Sales as value");
 		}
-		
+
 		hashmap.clear();
 		System.out.println(hashmap);
 	}
