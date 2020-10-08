@@ -7,6 +7,9 @@ public class MyHashMap {
 		hashmap.put(2, "John");
 		hashmap.put(3, "Devid");
 		hashmap.put(4, "Dhaka");
+		hashmap.put(null, "null value");
+		hashmap.put(5, null);
+		hashmap.put(null, null);
 
 		System.out.println(hashmap);
 	}
@@ -40,5 +43,34 @@ public class MyHashMap {
 		System.out.println("Did activa removed from HashMap: " + isActivaRemoved);
 		System.out.println(hashmap);
 		System.out.println("===============================");
+	}
+
+	public void Operation() {
+		HashMap<String, String> hashmap = new HashMap<>();
+		
+		boolean empty = hashmap.isEmpty();
+		System.out.println("is hashmap empty: " + empty);
+		
+		hashmap.put("Arpit", "Tech");
+		hashmap.put("John", "Sales");
+		hashmap.put("Martin", "HR");
+		hashmap.put("Vaibhav", "Tech");
+
+		System.out.println(hashmap);
+		System.out.println("size of hashmap: " + hashmap.size());
+		
+		System.out.println("Martin's department: " + hashmap.get("Martin"));
+		System.out.println("Robin's department: " + hashmap.get("Robin"));
+
+		if (hashmap.containsKey("John")) {
+			System.out.println("hashmap has John as key");
+		}
+
+		if (hashmap.containsValue("Sales")) {
+			System.out.println("hashmap has Sales as value");
+		}
+		
+		hashmap.clear();
+		System.out.println(hashmap);
 	}
 }
