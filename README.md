@@ -69,16 +69,21 @@ Since ArrayList is a growable array, it automatically resizes when the size (num
 
 Technically, it's 10, not zero, if you admit for a lazy initialisation of the backing array. See:
 
+```java
 public boolean add(E e) {
     ensureCapacityInternal(size + 1);
     elementData[size++] = e;
     return true;
 }
+```
 
+```java
 private void ensureCapacityInternal(int minCapacity) {
     if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
         minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
     }
     ensureExplicitCapacity(minCapacity);
 }
+```
+
 
