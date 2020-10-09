@@ -4,6 +4,10 @@ public class Country {
 	String name;
 	long population;
 
+	public Country() {
+
+	}
+
 	public Country(String name, long population) {
 		super();
 		this.name = name;
@@ -26,13 +30,38 @@ public class Country {
 		this.population = population;
 	}
 
-//	@Override
-//	public int compareTo(Country o) {
-//		return this.getName().compareTo(o.getName());
-//	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Country other = (Country) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
 }
 
-class Country1 implements Comparable<Country1>{
+class Country1 implements Comparable<Country1> {
 
 	String name;
 	long population;

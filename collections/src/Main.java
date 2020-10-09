@@ -9,9 +9,21 @@ public class Main {
 //		new MyLinkedHashMap().Add();
 //		new MyLinkedHashMap().Remove();
 //		new MyLinkedHashMap().Operation();
+//		System.out.println("#############################");
+//		new MyTreeMap().Add();
+//		new MyTreeMap().CustomSortingForCustomClass();
+//		new MyTreeMap().Operation();
+//		System.out.println("#############################");
+//		new MyHashSet().Basic();
+//		new MyHashSet().CustomObject();
+//		System.out.println("#############################");
+//		new MyTreeSet().Basic();
+//		new MyTreeSet().Trick();
+//		new MyTreeSet().Trick1();
+//		new MyTreeSet().Trick2();
+//		System.out.println("#############################");
+//		new MyLinkedHashSet().Basic();
 		System.out.println("#############################");
-		new MyTreeMap().Add();
-		new MyTreeMap().CustomSortingForCustomClass();
-		new MyTreeMap().Operation();
+		new MyArrayList().Basic();
 	}
 }
