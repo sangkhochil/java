@@ -86,4 +86,28 @@ private void ensureCapacityInternal(int minCapacity) {
 }
 ```
 
+## Hashtable Vs HashMap
+
+Parameter | Hashtable | HashMap
+--------- | --------- | --------
+ThreadSafe | Yes | No
+Synchronized | Yes | No
+Performance | Due to theadSafe and Synchronized,it is often slower than HashMap | In single threaded environment, it is much faster than Hashtable.So if you do not work in multi thread environment ,then hashMap is recommended
+Null key | Do not allow | Allows null key as well as values
+Fail fast | enumeration in hashtable is not fail fast | Iterator in hashMap is fail fast
+Extends | It extends Dictionary class which is quite old | It extends AbstractMap class
+Alternative | No alternative | You can use ConcurrentHashMap for multi thread environment
+
+### Some important points need to be discussed.
+
+Synchronized means only one thread can modify one table at one point of time. When any thread performs update operation on hashtable then it acquires lock on it and other threads have to wait for lock to be released.
+Fail-fast iterator means if one thread is iterating over hashmap and other thread trying to modify hashmap structurally it will throw ConcurrentModification Exception and fail immediately. Structurally modification means inserting or deleting elements that can change the structure of map.
+
+### Can we synchronize HashMap?
+Yes, We can synchronized a HashMap also with the help of Collections.synchonizedMap(hashmap) so HashMap can be synchronized by
+```java
+ Map map=Collections.synchonizedMap(hashmap)
+```
+
+
 
