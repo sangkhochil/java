@@ -1,7 +1,6 @@
-# java
-All java tutorials
+# java collections
 
-## Default capacity
+## Default java collections capacity
 * ArrayList-10
 * Vector-10
 * HashSet-16
@@ -100,8 +99,8 @@ Alternative | No alternative | You can use ConcurrentHashMap for multi thread en
 
 ### Some important points need to be discussed.
 
-Synchronized means only one thread can modify one table at one point of time. When any thread performs update operation on hashtable then it acquires lock on it and other threads have to wait for lock to be released.
-Fail-fast iterator means if one thread is iterating over hashmap and other thread trying to modify hashmap structurally it will throw ConcurrentModification Exception and fail immediately. Structurally modification means inserting or deleting elements that can change the structure of map.
+- Synchronized means only one thread can modify one table at one point of time. When any thread performs update operation on hashtable then it acquires lock on it and other threads have to wait for lock to be released.
+- Fail-fast iterator means if one thread is iterating over hashmap and other thread trying to modify hashmap structurally it will throw ConcurrentModification Exception and fail immediately. Structurally modification means inserting or deleting elements that can change the structure of map.
 
 ### Can we synchronize HashMap?
 Yes, We can synchronized a HashMap also with the help of Collections.synchonizedMap(hashmap) so HashMap can be synchronized by
@@ -109,5 +108,57 @@ Yes, We can synchronized a HashMap also with the help of Collections.synchonized
  Map map=Collections.synchonizedMap(hashmap)
 ```
 
+## HashMap vs HashSet
+One main thing about HashSet is objects which we are going to add in HashSet must implement Hashcode() and equals() method so that we can check for duplicate values.
+If we are adding custom objects to HashSet then we must override() Hashcode() and equals() method according to our need.
+If we do not override then object will take default implementation which may not desirable.
+
+Parameter | HashMap | HashSet
+-----------------------------
+<div class="text-green mb-2"> Interface </div> | This is core difference among them.HashMap implements Map interface | HashSet implement Set interface
+<div class="text-green mb-2"> Method for storing data </div> | It stores data in a form of key->value pair.So it uses put(key,value) method for storing data | It uses add(value) method for storing data
+<div class="text-green mb-2"> Duplicates </div> | HashMap allows duplicate value but not duplicate keys | HashSet does not allow duplicate values.
+<div class="text-green mb-2"> Performance </div> | It is faster than hashset as values are stored with unique keys | It is slower than HashMap
+<div class="text-green mb-2"> HashCode Calculation </div>HashCode Calculation | In hash map hashcode value is calculated using key object | In this,hashcode is calculated on the basis of value object.Hashcode can be same for two value object so we have to implement equals() method.If equals() method return false then two objects are different.
+
+## Comparable interface:
+Class whose objects to be sorted must implement this interface.In this,we have to implement compareTo(Object) method.
+For example:
+```java
+	public class Country implements Comparable{
+		   @Override
+		public int compareTo(Country country) {
+			return (this.countryId < country.countryId ) ? -1: (this.countryId > country.countryId ) ? 1:0 ;
+	}}
+```
+
+* If any class implements comparable inteface then collection of that object can be sorted automatically using Collection.sort() or Arrays.sort().Object will be sort on the basis of compareTo method in that class.
+
+## Comparator:
+When you want to sort the list of objects of a class,you can use Comparator interface. You don’t need to implement Comparator on the class whose objects need to be sorted. You can create a separate class and implement a Comparator interface as below.
+```java
+	import java.util.Comparator;
+	 
+	public class EmployeeSortByIdComparator implements Comparator{
+	 
+		@Override
+		public int compare(Employee e1, Employee e2) {
+			return e1.getEmpId()-e2.getEmpId();
+		}
+	}
+```
+### Anonymous Comparator:
+One of advantage of Comparator over comparable is you can create anonymous comparator i.e you don’t need to implement Comparable interface to class whose objects need to be sorted.
+```java
+	Collections.sort(listofEmployees,new Comparator<Employee>() {	 
+		@Override
+		public int compare(Employee o1, Employee o2) {
+			return o1.getName().compareTo(o2.getName());
+		}
+	});
+```
+
+## Comparator vs Comparable
+Main difference is sorting algorithm implement in same class for comparable but comparator implement in different class or anonymously, Sorting will be diffirent if anyone want.  
 
 
