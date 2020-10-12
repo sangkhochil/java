@@ -115,11 +115,11 @@ If we do not override then object will take default implementation which may not
 
 Parameter | HashMap | HashSet
 -----------------------------
-<div class="text-green mb-2"> Interface </div> | This is core difference among them.HashMap implements Map interface | HashSet implement Set interface
-<div class="text-green mb-2"> Method for storing data </div> | It stores data in a form of key->value pair.So it uses put(key,value) method for storing data | It uses add(value) method for storing data
-<div class="text-green mb-2"> Duplicates </div> | HashMap allows duplicate value but not duplicate keys | HashSet does not allow duplicate values.
-<div class="text-green mb-2"> Performance </div> | It is faster than hashset as values are stored with unique keys | It is slower than HashMap
-<div class="text-green mb-2"> HashCode Calculation </div>HashCode Calculation | In hash map hashcode value is calculated using key object | In this,hashcode is calculated on the basis of value object.Hashcode can be same for two value object so we have to implement equals() method.If equals() method return false then two objects are different.
+Interface | This is core difference among them.HashMap implements Map interface | HashSet implement Set interface
+Method for storing data | It stores data in a form of (key value) pair.So it uses put(key,value) method for storing data | It uses add(value) method for storing data
+Duplicates | HashMap allows duplicate value but not duplicate keys | HashSet does not allow duplicate values.
+Performance | It is faster than hashset as values are stored with unique keys | It is slower than HashMap
+HashCode Calculation | In hash map hashcode value is calculated using key object | In this,hashcode is calculated on the basis of value object.Hashcode can be same for two value object so we have to implement equals() method.If equals() method return false then two objects are different.
 
 ## Comparable interface:
 Class whose objects to be sorted must implement this interface.In this,we have to implement compareTo(Object) method.
