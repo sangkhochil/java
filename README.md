@@ -114,7 +114,7 @@ If we are adding custom objects to HashSet then we must override() Hashcode() an
 If we do not override then object will take default implementation which may not desirable.
 
 Parameter | HashMap | HashSet
------------------------------
+--------- | ------- | -------
 Interface | This is core difference among them.HashMap implements Map interface | HashSet implement Set interface
 Method for storing data | It stores data in a form of (key value) pair.So it uses put(key,value) method for storing data | It uses add(value) method for storing data
 Duplicates | HashMap allows duplicate value but not duplicate keys | HashSet does not allow duplicate values.
