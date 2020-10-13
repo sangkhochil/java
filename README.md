@@ -193,14 +193,14 @@ Multithreading can be of advantage specially when now a days, machine has multip
 * When you use inheritance, it is because you want to extend some properties of parent, modify or improve class behavior. But if you are extending thread class just to create thread, so it may not be recommended behavior for Object Oriented Programming.
 
 ### Process vs Thread:
-1 The process can be referred as program in execution whereas thread is part of process.
-2 Process has its own address space whereas multiple threads share same address space of process. Each thread has its own stack.
-3 Process can have multiple threads but thread is the smallest unit which can execute concurrently with other threads.
-4 Process are quite heavyweight and have more overhead whereas thread is light weight and have less overhead.
-5 Process do not depend on each other whereas threads are not independent as they share address space.
-6 You do not require synchronization in case of process. Threads require synchronization to avoid unexpected scenarios.
-7 Processes can communicate to each other using inter-process communication only where as thread can communicate directly as thread share same address space.
-8 You can easily create new threads by calling thread’s start method but you need to copy resources of parent process to create a new child process.
+1. The process can be referred as program in execution whereas thread is part of process.
+2. Process has its own address space whereas multiple threads share same address space of process. Each thread has its own stack.
+3. Process can have multiple threads but thread is the smallest unit which can execute concurrently with other threads.
+4. Process are quite heavyweight and have more overhead whereas thread is light weight and have less overhead.
+5. Process do not depend on each other whereas threads are not independent as they share address space.
+6. You do not require synchronization in case of process. Threads require synchronization to avoid unexpected scenarios.
+7. Processes can communicate to each other using inter-process communication only where as thread can communicate directly as thread share same address space.
+8. You can easily create new threads by calling thread’s start method but you need to copy resources of parent process to create a new child process.
 
   
 
