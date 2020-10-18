@@ -202,6 +202,28 @@ Multithreading can be of advantage specially when now a days, machine has multip
 7. Processes can communicate to each other using inter-process communication only where as thread can communicate directly as thread share same address space.
 8. You can easily create new threads by calling thread’s start method but you need to copy resources of parent process to create a new child process.
 
+### Join
+```java
+join() // main thread wait until clild thread back
+join(milisecond) // main thread wait until milisecond clild thread back
+join(milisecond, nanosecond) // main thread wait until milisecond plus nanosecond clild thread back
+```
+### Daemon thread
+* Daemon threads are low priority background threads which provide services to user threads and It’s life depends on user threads.
+* If no user thread is running then JVM can exit even if daemon threads are running, JVM do not wait for daemon threads to finish.
+* Daemon threads perform background tasks such as garbage collection, finalizer  etc.
+* The only purpose of daemon thread is to serve user thread.
+
+```java
+	Public void setDaemon(boolean status) //set true it's daemon thread
+	Public boolean isDaemon() // This method can be used to check if thread is daemon or not.
+```
+can not convert user thread to daemon thread once it is started otherwise it will throw IllegalThreadStateException. 
+Once started a thread, it can not be started again. If try to start thread again , it will throw IllegalThreadStateException.
+inter thread communication by wait, notify and notifyAll
+
+
+
   
 
 
