@@ -2,7 +2,7 @@
 public class Main {
 
 	public static void main(String[] args) {
-		new Main().Test4();
+		new Main().Test6();
 	}
 	
 	public void Test1() {
@@ -42,5 +42,17 @@ public class Main {
 			e.printStackTrace();
 		}
 		System.out.println("main thread");
+	}
+	
+	public void Test5(){
+		new InterThreadCommunication().MultiThreadCommunication();
+	}
+	
+	public void Test6(){
+		new InterThreadCommunication1().interThreadCommunication();
+	}
+	
+	public void Test7(){
+		new InterThreadCommunication2().InterThreadCommunication();
 	}
 }

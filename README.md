@@ -1,3 +1,10 @@
+#Common
+
+###HashCode
+The hashcode of a Java Object is simply a number, it is 32-bit signed int, that allows an object to be managed by a hash-based data structure.
+We know that hash code is an unique id number allocated to an object by JVM. ...
+If two objects are equals then these two objects should return same hash code.
+
 # java collections
 
 ## Default java collections capacity
@@ -7,7 +14,6 @@
 * HashMap-16
 * HashTable-11
 * HashSet-16
-
 
 ## HashMap
 * HashMap implements Map an interface that maps a key to value.
@@ -221,6 +227,22 @@ join(milisecond, nanosecond) // main thread wait until milisecond plus nanosecon
 can not convert user thread to daemon thread once it is started otherwise it will throw IllegalThreadStateException. 
 Once started a thread, it can not be started again. If try to start thread again , it will throw IllegalThreadStateException.
 inter thread communication by wait, notify and notifyAll
+
+### wait(), notify(), and notifyAll()
+Java provide benefits of avoiding thread pooling using inter-thread communication. The wait(), notify(), and notifyAll() methods of Object class are used for this purpose.
+These method are implemented as final methods in Object, so that all classes have them. All the three method can be called only from within a synchronized context
+
+* wait() Causes the current thread to wait until another thread invokes the notify()
+* notify() Wakes up a single thread that is waiting on same object's monitor.
+* notifyAll() Wakes up all the threads that called wait( ) on the same object.
+
+wait() | sleep()
+------ | -------
+called from synchronised block | no such requirement
+monitor is released |monitor is not released
+gets awake when notify() or notifyAll() method is called | does not get awake when notify() or notifyAll() method is called
+not a static method | static method
+wait() is generaly used on condition | sleep() method is simply used to put your thread on sleep.
 
 
 
