@@ -1,11 +1,11 @@
-#Common
+# Common
 
-###HashCode
+### HashCode
 The hashcode of a Java Object is simply a number, it is 32-bit signed int, that allows an object to be managed by a hash-based data structure.
 We know that hash code is an unique id number allocated to an object by JVM. ...
 If two objects are equals then these two objects should return same hash code.
 
-# java collections
+# Java Collections
 
 ## Default java collections capacity
 * ArrayList-10
