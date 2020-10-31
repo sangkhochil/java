@@ -244,6 +244,38 @@ gets awake when notify() or notifyAll() method is called | does not get awake wh
 not a static method | static method
 wait() is generaly used on condition | sleep() method is simply used to put your thread on sleep.
 
+## Executor Framework
+Java 5 has introduced new concurrent API called Executor frameworks, design and development of multi-thread applications. 
+It consists of mainly Executor, ExecutorService interface and ThreadPoolExecutor class which implements both interfaces i.e. Executor and ExecutorService. 
+ThreadPoolExecutor class provide the implementation of thread pool.
+When we create a simple multithreading application, we create Runnable objects and construct Thread object using Runnable, We need to create, execute and manage thread.
+It may be difficult for us to do that. Executor Framework does it for us. It is responsible for creating, executing and managing the thread and not only this, it improves the performance of the application too.
+
+```java
+	public interface Executor {
+	 void execute(Runnable command);
+	}
+```
+
+There is another interface called ExecutorService which extends Executor interface. It can be termed as Executor that provides methods that can control termination and methods that can produce a 
+Future for tracking the progress of one or more asynchronous tasks. It has method such as submit, shutdown, shutdownNow etc.
+
+ThreadPoolExecutor is actual implementation of ThreadPool. It extends AbstractThreadPoolExecutor which implements ExecutorService interface.
+we can create ThreadPoolExecutor from factory methods of Executor class. It is recommended a way to get an instance of ThreadPoolExecutor.
+There are 4 factory methods in Executors class which can be used to get an instance of ThreadPoolExecutor.
+
+* Here are four factory method present in Executors class.
+newFixedThreadPool: This method returns thread pool executor whose maximum size(let’s say n threads) is fixed.If all n threads are busy performing the task and additional tasks are submitted, then they will have to be in the queue until thread is available.
+newCachedThreadPool: this method returns an unbounded thread pool. It doesn’t have maximum size but if it has less number of tasks, then it will tear down unused thread. If thread has been unused for 1 mins(keepAliveTime), then it will tear it down.
+newSingleThreadedExecutor: this method returns an executor which is guaranteed to use the single thread. 
+newScheduledThreadPool: this method returns a fixed size thread pool that can schedule commands to run after a given delay, or to execute periodically.
+
+We should not hardcode size of thread pool. It should be provided by configuration or calculated from Runtime.availableProcessors()
+
+* Executor’s newCachedThreadPool  factory method :
+This method returns an unbounded thread pool. It sets maximum pool size to Integer.Max and it will create new threads depending on demand. 
+If demand decreases, it will tear down threads if threads are idle for more than 1 min.
+
 
 
   
