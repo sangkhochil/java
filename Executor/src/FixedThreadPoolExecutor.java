@@ -9,6 +9,8 @@ public class FixedThreadPoolExecutor {
 			System.out.println(String.format("[task-%d] added to read file-%d", i, i));
 			executor.execute(readFile);
 		}
+		System.out.println("Before shutdown");
 		executor.shutdown();
+		System.out.println("After shutdown");
 	}
 }

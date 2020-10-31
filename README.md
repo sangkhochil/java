@@ -276,6 +276,40 @@ We should not hardcode size of thread pool. It should be provided by configurati
 This method returns an unbounded thread pool. It sets maximum pool size to Integer.Max and it will create new threads depending on demand. 
 If demand decreases, it will tear down threads if threads are idle for more than 1 min.
 
+## FutureTask
+
+FutureTask class has been introduced in JDK 5 with Executor Framework. FutureTask class is the concrete implementation of the Future object and provides methods for start and cancel the task.
+It also provides method to see if the computation is done or not. We can query FutureTask object and get the result of computation.
+If we call get method on FutureTask object, it is blocking call and returns once the computation is done.
+
+### Callable vs Runnable
+
+* For implementing Runnable, the run() method needs to be implemented which does not return anything, while for a Callable, the call() method needs to be implemented which returns a result on completion. Note that a thread can’t be created with a Callable, it can only be created with a Runnable.
+* Another difference is that the call() method can throw an exception whereas run() cannot.
+
+## Concurant Utils
+
+### ConcurrentHashMap 
+* ConcurrentHashMap introduced in Java 5 with other concurrency utils such as CountDownLatch, CyclicBarrier and BlockingQueue.
+* ConcurrentHashMap is very similar to HashTable but it provides better concurrency level.
+* we can synchonize HashMap using Collections.synchronizedMap(Map)
+* difference between ConcurrentHashMap and Collections.synchronizedMap(Map)In case of Collections.synchronizedMap(Map), it locks whole HashTable object but in ConcurrentHashMap, it locks only part of it. You will understand it in later part.
+* ConcurrentHashMap class has a inner class called Segment
+* ConcurrentHashMap locks only part of it.It actually locks a Segment
+
+### BlockingQueue 
+It is thread safe queue to put and take elements from it. BlockingQueue is special type of queue which is used when one thread produces object and another thread consumes it.
+Producer thread will keep inserting objects to queue until it reaches upper limit. Once this queue size has reached that limit then producer thread will get blocked and won’t able to put objects into queue until consumer thread starts consuming it.
+Similarly consumer thread keep taking objects from queue until queue becomes empty. Once queue becomes empty, consumer thread get blocked and waits for producer threads for inserting objects into the queue.
+
+### CountDownLatch
+CountDownLatch is synchronisation aid that allow one or more threads to wait until set of operations being performed in other threads completes.
+CountDownLatch is initialized with count. Any thread generally main threads calls latch.awaits() method, so it will wait for either count becomes zero or it’s interrupted by another thread and all other thread need to call latch.countDown() once they complete some operation.
+So count is reduced by 1 whenever latch.countDown() method get called, so  if count is n that means count can be used as n threads have to complete some action or some action have to be completed n times.
+
+One of disadvantage of CountDownLatch is you can not reuse it once count is zero. For that ,you need to use CyclicBarrier.
+
+
 
 
   

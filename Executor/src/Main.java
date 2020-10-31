@@ -1,7 +1,7 @@
 
 public class Main {
 
-	public static void main(String[] args) {
-		new CachedThreadPoolExecutor().Example1();
+	public static void main(String[] args) throws InterruptedException {
+		new FutureTaskExample().Example2();
 	}
 }
