@@ -2,7 +2,7 @@
 public class Main {
 
 	public static void main(String[] args) {
-		new Main().Test6();
+		new Main().Test9();
 	}
 	
 	public void Test1() {
@@ -54,5 +54,13 @@ public class Main {
 	
 	public void Test7(){
 		new InterThreadCommunication2().InterThreadCommunication();
+	}
+	
+	public void Test8(){
+		new ThreadPriority().Example1();
+	}
+	
+	public void Test9(){
+		new AtomicOpeartion().Example1();
 	}
 }

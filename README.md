@@ -208,6 +208,17 @@ Multithreading can be of advantage specially when now a days, machine has multip
 7. Processes can communicate to each other using inter-process communication only where as thread can communicate directly as thread share same address space.
 8. You can easily create new threads by calling thread’s start method but you need to copy resources of parent process to create a new child process.
 
+### Priority of a Thread
+
+Each thread have a priority. Priorities are represented by a number between 1 and 10. In most cases, thread schedular schedules the threads according to their priority (known as preemptive scheduling).
+But it is not guaranteed because it depends on JVM specification that which scheduling it chooses.
+```java
+	public static int MIN_PRIORITY
+	public static int NORM_PRIORITY
+	public static int MAX_PRIORITY
+```
+* Default priority of a thread is 5 (NORM_PRIORITY). The value of MIN_PRIORITY is 1 and the value of MAX_PRIORITY is 10.
+
 ### Join
 ```java
 join() // main thread wait until clild thread back
@@ -289,6 +300,72 @@ If we call get method on FutureTask object, it is blocking call and returns once
 
 ## Concurant Utils
 
+### AtomicInteger 
+The AtomicInteger class protects an underlying int value by providing methods that perform atomic operations on the value. It shall not be used as a replacement for an Integer class.
+```java
+	//Initial value is 0
+	AtomicInteger atomicInteger = new AtomicInteger();  
+	 
+	//Initial value is 100
+	AtomicInteger atomicInteger = new AtomicInteger(100);	 
+	int currentValue = atomicInteger.get();         //100	 
+	atomicInteger.set(1234);                        //Now value is 1234
+```
+### AtomicInteger Opeartion
+* Processor can simultaneously read a location and write it in the same bus operation.
+
+* Benefits of using Concurrency classes for atomic operation is that we don’t need to worry about synchronization. This improves code readability and chance of errors are reduced. Also atomic operation concurrency classes are assumed to be more efficient that synchronization which involves locking resources.
+
+### When to use AtomicInteger in Java
+In real life uses, we will need AtomicInteger in two cases:
+
+* As an atomic counter which is being used by multiple threads concurrently.
+* In compare-and-swap operations to implement non-blocking algorithms.
+
+### There are 3 parameters for a CAS(Compare and Swap) operation:
+
+1. A memory location V where value has to be replaced
+2. Old value A which was read by thread last time
+3. New value B which should be written over V
+
+Java Compare and Swap Example
+Assume V is a memory location where value “10” is stored. There are multiple threads who want to increment this value and use the incremented value for other operations, a very practical scenario.
+Let’s break the whole CAS operation in steps:
+
+1) Thread 1 and 2 want to increment it, they both read the value and increment it to 11.
+
+V = 10, A = 0, B = 0
+
+2) Now thread 1 comes first and compare V with it’s last read value:
+
+V = 10, A = 10, B = 11
+```java
+	if A = V
+	   V = B
+	 else
+	   operation failed
+	   return V
+```
+
+Clearly the value of V will be overwritten as 11, i.e. operation was successful.
+
+3) Thread 2 comes and try the same operation as thread 1
+
+V = 11, A = 10, B = 11
+```java
+	if A = V
+	   V = B
+	 else
+	   operation failed
+	   return V
+```
+
+4) In this case, V is not equal to A, so value is not replaced and current value of V i.e. 11 is returned. Now thread 2, again retry this operation with values:
+
+V = 11, A = 11, B = 12
+
+And this time, condition is met and incremented value 12 is returned to thread 2.
+
 ### ConcurrentHashMap 
 * ConcurrentHashMap introduced in Java 5 with other concurrency utils such as CountDownLatch, CyclicBarrier and BlockingQueue.
 * ConcurrentHashMap is very similar to HashTable but it provides better concurrency level.
@@ -309,8 +386,32 @@ So count is reduced by 1 whenever latch.countDown() method get called, so  if co
 
 One of disadvantage of CountDownLatch is you can not reuse it once count is zero. For that ,you need to use CyclicBarrier.
 
+###CyclicBarrier
+CyclicBarrier is synchronized aid which allows set of threads to wait for each other at common barrier points.It is called cyclic because it can be reused once waiting threads are released.
+* The major difference between CyclicBarrier and CoundDownLatch is that CyclicBarrier can be reused.
+
+### Semaphore 
+Semaphore basically maintains a set of permits, so there are two methods which are mainly used for semaphore.
+* acquire
+* release
+
+#### Real time examples:
+* Semaphores can be used to restrict number of database connections at a time
+* Semaphores can also be used to bound any collection.
+
+### Exchanger
+Exchanger class is used to exchange object between two threads. Exchanger simply waits until two separate threads calls exchange method, when it happens,
+it exchanges data supplied by threads.Two threads can pair and swap objects between them. Exchanger class may be useful in genetic algorithms or pipeline design.
 
 
+
+
+
+#### Reference's ####
+https://java2blog.com/
+https://howtodoinjava.com
+https://www.journaldev.com
+https://www.geeksforgeeks.org/
 
   
 
