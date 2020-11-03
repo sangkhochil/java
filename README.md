@@ -403,9 +403,19 @@ Semaphore basically maintains a set of permits, so there are two methods which a
 Exchanger class is used to exchange object between two threads. Exchanger simply waits until two separate threads calls exchange method, when it happens,
 it exchanges data supplied by threads.Two threads can pair and swap objects between them. Exchanger class may be useful in genetic algorithms or pipeline design.
 
+## Serialization
+Serialization in Java allows us to convert an Object to stream that we can send over the network or save it as file or store in DB for later usage. 
+Deserialization is the process of converting Object stream to actual Java Object to be used in our program
 
+### serialVersionUID
+The serialVersionUID is a universal version identifier for a Serializable class.
+Deserialization uses this number to ensure that a loaded class corresponds exactly to a serialized object. If no match is found, then an InvalidClassException is thrown.
+serialVersionUID must be Static and final.You can assign any number to it.
 
+* Externalizable
+It uses custom written mechanism to perform marshalling and unmarshalling of objects.Externalizable interface extends Serializable interface
 
+When object is reconstructed and it is externalizable , an instance is created using no args constructor and readExternal is called
 
 #### Reference's ####
 https://java2blog.com/
