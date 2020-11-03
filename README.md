@@ -430,11 +430,30 @@ Control | Serializable interface has less control over serialization process and
 Performance | JVM uses reflection to perform serialization in the case of Serializable interface which is quite slow. | Programmer have to implement readExternal and writeExternal methods but it relatively results in better performance
 Constructor called during Deserialization | Default constructor is not called during Deserialization process. | Default constructor is called during Deserialization process.
 
+## Exception
+“An exception is an event, which occurs during the execution of a program, that disrupts the normal flow of the program’s instructions.”
+Every Exception will be thrown at runtime.
+There are mainly two types of exceptions: checked and unchecked. Here, an error is considered as the unchecked exception. According to Oracle, there are three types of exceptions:
+
+1. Checked Exception (Compiler Exception)
+2. Unchecked Exception (RuntimeException)
+3. Error (Also called RuntimeException)
+
+1) Checked(Compiler Exception): are the exceptions that are checked at compile time. 
+   IOException, FileNotFoundException, SQLException, ClassNotFoundException
+
+2) Unchecked(RuntimeException): are the exceptions that are not checked at compiled time.
+   Java exceptions under Error and RuntimeException classes are unchecked exceptions
+   ArithmeticException, NullPointerException, NumberFormatException, IndexOutOfBoundsException, ArrayIndexOutOfBoundsException, StringIndexOutOfBoundsException, etc
+   
+3) Error: is irrecoverable e.g. OutOfMemoryError, VirtualMachineError, AssertionError etc.
+
+
 #### Reference's ####
-https://java2blog.com/
-https://howtodoinjava.com
-https://www.journaldev.com
-https://www.geeksforgeeks.org/
+01. https://java2blog.com/
+02. https://howtodoinjava.com
+03. https://www.journaldev.com
+04. https://www.geeksforgeeks.org/
 
   
 
