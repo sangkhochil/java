@@ -4,13 +4,13 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
 public class Employee2 implements Externalizable {
+	private static final long serialVersionUID = 45825695474544L;
 	int employeeId;
 	String employeeName;
 	String department;
 	String nationality;
 
 	public Employee2() {
-
 	}
 
 	public int getEmployeeId() {
@@ -49,13 +49,13 @@ public class Employee2 implements Externalizable {
 	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 		employeeId = in.readInt();
 		employeeName = (String) in.readObject();
-		department = (String) in.readObject();
+//		department = (String) in.readObject();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
 		out.writeInt(employeeId);
 		out.writeObject(employeeName);
-		out.writeObject(department);
+//		out.writeObject(department);
 	}
 }

@@ -51,7 +51,7 @@ public class SerializationBasic {
 
 		// Serialize
 		try {
-			FileOutputStream fileOut = new FileOutputStream("employee.ser");
+			FileOutputStream fileOut = new FileOutputStream("employee2.ser");
 			ObjectOutputStream outStream = new ObjectOutputStream(fileOut);
 			outStream.writeObject(emp);
 			outStream.close();
@@ -63,7 +63,7 @@ public class SerializationBasic {
 		// Deserialize
 		emp = null;
 		try {
-			FileInputStream fileIn = new FileInputStream("employee.ser");
+			FileInputStream fileIn = new FileInputStream("employee2.ser");
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			emp = (Employee2) in.readObject();
 			in.close();
@@ -79,6 +79,6 @@ public class SerializationBasic {
 		System.out.println("Deserialized Employee...");
 		System.out.println("Emp id: " + emp.getEmployeeId());
 		System.out.println("Name: " + emp.getEmployeeName());
-		System.out.println("Department: " + emp.getDepartment());
+//		System.out.println("Department: " + emp.getDepartment());
 	}
 }

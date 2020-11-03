@@ -411,11 +411,24 @@ Deserialization is the process of converting Object stream to actual Java Object
 The serialVersionUID is a universal version identifier for a Serializable class.
 Deserialization uses this number to ensure that a loaded class corresponds exactly to a serialized object. If no match is found, then an InvalidClassException is thrown.
 serialVersionUID must be Static and final.You can assign any number to it.
+If serialVersionUID is not specified in class, JVM will calculate the value according to the JVM specification.
 
 * Externalizable
 It uses custom written mechanism to perform marshalling and unmarshalling of objects.Externalizable interface extends Serializable interface
 
-When object is reconstructed and it is externalizable , an instance is created using no args constructor and readExternal is called
+When object is reconstructed and it is externalizable , an instance is created using no args constructor and readExternal is called.
+If serialized class does not exsit no args constructor jvm will through exception( no valid constructor). In every class has default constructor with no argument, if explicite parameters constructor decleared
+default or no args contructor will have to decleare.
+
+* transient keyword
+Transient variable is variable whose value is dose not serialized during serialization. Will get default value for these variable when deserialize it.
+
+Parameter | Serializable | Externalizable
+--------- | ------------ | --------------
+Marker interface | It is marker interface. You don’t have to provide implementation of any method. | Externalizable is not marker interface, you have to override writeExternal and readExternal method.
+Control | Serializable interface has less control over serialization process and it is optional to override readObject and writeObject. | Externalizable interface has more control over serialization process and it is mandatory to override writeExternal and readExternal.
+Performance | JVM uses reflection to perform serialization in the case of Serializable interface which is quite slow. | Programmer have to implement readExternal and writeExternal methods but it relatively results in better performance
+Constructor called during Deserialization | Default constructor is not called during Deserialization process. | Default constructor is called during Deserialization process.
 
 #### Reference's ####
 https://java2blog.com/
