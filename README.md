@@ -448,6 +448,9 @@ There are mainly two types of exceptions: checked and unchecked. Here, an error 
    
 3) Error: is irrecoverable e.g. OutOfMemoryError, VirtualMachineError, AssertionError etc.
 
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/exception1.png?raw=true)
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/exception2.png?raw=true)
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/exception3.png?raw=true)
 
 #### Reference's ####
 01. https://java2blog.com/
