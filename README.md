@@ -433,26 +433,239 @@ Constructor called during Deserialization | Default constructor is not called du
 ## Exception
 “An exception is an event, which occurs during the execution of a program, that disrupts the normal flow of the program’s instructions.”
 Every Exception will be thrown at runtime.
+
 There are mainly two types of exceptions: checked and unchecked. Here, an error is considered as the unchecked exception. According to Oracle, there are three types of exceptions:
 
-1. Checked Exception (Compiler Exception)
+1. Checked Exception (CompilerTime Exception)
 2. Unchecked Exception (RuntimeException)
 3. Error (Also called RuntimeException)
 
-1) Checked(Compiler Exception): are the exceptions that are checked at compile time. 
+1) Checked(CompilerTime Exception): are the exceptions that are checked at compile time. 
    IOException, FileNotFoundException, SQLException, ClassNotFoundException
 
 2) Unchecked(RuntimeException): are the exceptions that are not checked at compiled time.
    Java exceptions under Error and RuntimeException classes are unchecked exceptions
    ArithmeticException, NullPointerException, NumberFormatException, IndexOutOfBoundsException, ArrayIndexOutOfBoundsException, StringIndexOutOfBoundsException, etc
    
-3) Error: is irrecoverable e.g. OutOfMemoryError, VirtualMachineError, AssertionError etc.
+3) Error: is irrecoverable e.g. StackOverFlowException, OutOfMemoryError, VirtualMachineError, AssertionError etc.
+
+throw:
+throw keyword is used to throw any custom exception or predefine exception.
+
+throws:
+throws keyword is used to declare list of all exception which method might throw. It delegates responsibility of handling exception to calling method.
 
 ![alt text](https://github.com/sangkhochil/java/blob/main/Resources/exception1.png?raw=true)
 
 ![alt text](https://github.com/sangkhochil/java/blob/main/Resources/exception2.png?raw=true)
 
 ![alt text](https://github.com/sangkhochil/java/blob/main/Resources/exception3.png?raw=true)
+
+# Lambda Expressions
+Java 8 has introduced a new feature called Lambda expressions. It is considered to be a major change in java. As this change bring functional programming into Java.
+
+## Functional Interfaces
+Functional interfaces are those interfaces which have only one abstract method, it can have default methods, static methods and it can also override java.lang.Object class method.
+There are many functional interfaces already present.
+
+implement functional interfaces using lambda expressions.
+
+```java
+	@FunctionalInterface
+	public interface Decorable {
+	
+		 // one abstract method
+		 void decorateWithCurtains();
+		 
+		 // default method
+		 default void decorateWithPaints() {
+			System.out.println("Decorating using paints");
+		 }
+		 
+		 // Overriding method of java.lang.Object
+		 @Override
+		 public int hashCode() {	 
+		}
+	}
+```
+
+Some popular Functional Interfaces are:
+```java
+	java.lang.Runnable
+	java.util.concurrent.Callable
+	java.awt.event.ActionListener
+	java.util.Comparator
+	java.lang.Comparable
+```
+
+### Anonymous function
+An anonymous function is a function that declared without any named identifier to refer to it. As such, an anonymous function is usually not accessible after its initial creation
+
+Lambda expression represents an anonymous function. It comprises of a set of parameters, a lambda operator (->) and a function body . We can call it function without name.
+Lambda expression can be applied for the abstract method of functional Interface which is being implemented or being instantiated anonymously.
+
+* Structure of Lambda Expressions
+(Argument List) ->{expression;} or
+(Argument List) ->{statements;}
+
+* Lambda expression to three parts:
+1. Argument list or parameters
+   1. Lambda expression can have zero or more arguments.
+   ```java
+	   ()->{System.out.println(“Hello”)}; //Without argument, will print hello
+	   (int a)->{System.out.println(a)}; // One argument, will print value of a
+	   (int a,int b)-> {a+b};//two argument, will return sum of these two integers
+   ```
+   2. You can choose to not declare the type of arguments as it can be inferred from context.
+   ```java
+		(a,b)->{a+b}; // two argument, will return sum of these two numbers
+   ```
+   3. you can not declare one argument’s type and do not declare type for other argument.
+   ```java
+		(int a,b)->{a+b}; // Compilation error
+   ```
+   4. When there is a single parameter, if its type is inferred, it is not mandatory to use parentheses
+   ```java
+		a->{System.out.println(a)}; // Will print value of number a
+   ```
+2. Array token (->)
+3. Body
+	1. Body can have expression or statements.
+	2. If there is only one statement in body,curly brace is not needed and return type of the anonymous function is same as of body expression
+	3. If there are more than one statements, then it should be in curly braces and return type of anonymous function is same as value return from code block, void if nothing is returned.
+
+```java
+	public class Sample {
+	 
+	 public static void main(String[] args) {
+	  
+	  // old way
+	  new Thread(new Runnable() {	   
+		   @Override
+		   public void run() {
+			System.out.println("Thread is started");
+		   }
+	  }).start();
+	 
+	  // using lambda Expression
+	  new Thread(()->System.out.println("Thread is started")).start();
+	 }
+	 
+	}
+```
+
+### Stream
+Stream is a new abstract layer introduced in Java 8. Using stream, we can process data in a declarative way similar to SQL statements.
+Stream represents a sequence of objects from a source, which supports aggregate operations.
+
+* Sequence of elements − A stream provides a set of elements of specific type in a sequential manner. A stream gets/computes elements on demand. It never stores the elements.
+* Source − Stream takes Collections, Arrays, or I/O resources as input source.
+* Aggregate operations − Stream supports aggregate operations like filter, map, limit, reduce, find, match, and so on.
+* Pipelining − Most of the stream operations return stream itself so that their result can be pipelined.
+* Automatic iterations − Stream operations do the iterations internally over the source elements
+
+### Why default methods
+The oneliner for this could be “backward compatibility”.If JDK modifies an interface, then all classes which implements this interface will break.
+
+For adding lambda expression in Java 8, JDK needs to add  methods(such as foreach) to List or collections Interface, but if we add this method to these interface, it will break millions lines of code as class which implements the interface, need to implement all its methods.
+
+By adding default method in interface, you can provide default implementation of it without affecting implementing classes as it includes implementation of that method and any implementing class which needs that method can override it.
+
+* Adding default implementation to the interface can give rise to ambiguity in multiple inheritance.
+ to solve this compilation ambiguity error by overriding default method method in implemetation classes.
+ 
+ Parameter | Abstract class | Interface with default methods
+ --------- | -------------- | ------------------------------
+State of objects | Abstract class can hold state of object | Interface with default methods can not hold state of objects
+Access Modifier | Abstract class methods can have public ,protected,private and default modifier | Interface methods are by default public. you can not use any other access modifier with it
+Constructor | Abstract class can have constructor | Interface  can not have constructor
+Member variables | It can have member variables | No member variables
+
+## Functional Interface
+ java.util.function package in Java 8 contains many builtin functional interfaces like-
+ *N.B: T must be reference type for all functional interface. String, Integer, Long, Boolean
+ 
+### Supplier
+Supplier is functional interface which does not take any argument and produces result of type T. The Supplier interface can also be thought of as a factory interface.
+
+```java
+	@FunctionalInterface
+	public interface Supplier<T> {
+		/**
+		 * Gets a result.
+		 *
+		 * @return a result
+		 */
+		T get();
+	}
+```
+```java
+	Supplier<String> supplier= ()-> "Jahangir";
+	System.out.println(supplier.get());
+	
+	Supplier<Integer> supplier1 = () -> new Integer((int) (Math.random() * 1000D));
+	System.out.println(supplier1.get());
+```
+
+#### supplier in Stream’s generate method
+```java
+	public static<T> Stream<T> generate(Supplier<T> s)
+```
+### Consumer
+Consumer is single argument(T type) functional interface like Predicate but it does not return any value. As Consumer is functional interface, so it can be used as assignment target for lambda expressions.
+The Java Consumer interface is a functional interface that represents an function that consumes a value without returning any value.
+A Java Consumer implementation could be printing out a value, or writing it to a file, or over the network etc
+
+```java
+	@FunctionalInterface
+	public interface Consumer<T> {
+	 
+		/**
+		 * Performs this operation on the given argument.
+		 *
+		 * @param t the input argument
+		 */
+		void accept(T t);
+	 
+		default Consumer<T> andThen(Consumer<? super T> after) {
+			Objects.requireNonNull(after);
+			return (T t) -> { accept(t); after.accept(t); };
+		}
+	}
+```
+```java
+	Consumer<Integer> consumer = (value) -> System.out.println(value);
+```
+#### default andThen() method
+Returns a composed Consumer that performs, in sequence, this operation followed by the after operation.
+If performing either operation throws an exception, it is relayed to the caller of the composed operation.
+If performing this operation throws an exception, the after operation will not be performed.
+
+Two consumers and used andThen() method to create composite consumer.
+When we called accept() method on composite consumer, both the consumers are called in sequence.
+
+### Predicate
+Predicate is single argument functional interface which returns boolean value. It takes one argument with type T and returns result in form of true or false.
+
+```java
+public interface Predicate {
+	boolean test(T t);
+}
+```
+
+``` java
+	// Using anonymous class
+	Predicate<Integer> predicate=new Predicate<Integer>() {
+
+		@Override
+		public boolean test(Integer i) {
+			return i > 100;
+		}
+	};
+
+	// Using lambda expression
+	Predicate<Integer> predicate = i -> i > 100;
+```
 
 #### Reference's ####
 01. https://java2blog.com/
