@@ -1,7 +1,10 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -81,7 +84,38 @@ public class FunctionalInterfaces {
 		System.out.println(predicate5.test("test1"));
 		System.out.println(predicate5.test("test2"));
 	}
-
+	
+	public void FunctionExample(){
+		Map<String, Integer> nameMap = new HashMap<>();
+		System.out.println(nameMap.size());
+		Integer value = nameMap.computeIfAbsent("key1", s -> s.length());
+		System.out.println(value);
+		System.out.println(nameMap.size());
+		System.out.println("key1 = " + nameMap.get("key1"));
+		
+		//
+		Function<Integer, String> intToString = Object::toString;
+		System.out.println(intToString.apply(12));
+		Function<String, String> quote = s -> "'" + s + "'";		 
+		Function<Integer, String> quoteIntToString = quote.compose(intToString);
+		
+		if("'5'".equals(quoteIntToString.apply(5)))
+			System.out.println("operation sucess");
+		
+		short[] array = {(short) 10, (short) 20, (short) 30};
+		byte[] transformedArray = transformArray(array, s -> (byte) (s * 2));
+		for(int i=0; i< transformedArray.length; i++)
+			System.out.println(transformedArray[i]);
+	}
+	
+	private byte[] transformArray(short[] array, ShortToByteFunction function) {
+	    byte[] transformedArray = new byte[array.length];
+	    for (int i = 0; i < array.length; i++) {
+	        transformedArray[i] = function.applyAsByte(array[i]);
+	    }
+	    return transformedArray;
+	}
+	
 	private List<Student> createStudentList() {
 		List<Student> studentList = new ArrayList<>();
 		Student s1 = new Student(1, "Jahangir", "M", 19);
@@ -99,6 +133,11 @@ public class FunctionalInterfaces {
 		studentList.add(s6);
 		return studentList;
 	}
+}
+
+@FunctionalInterface
+interface ShortToByteFunction {
+    byte applyAsByte(short s); 
 }
 
 class Entity {

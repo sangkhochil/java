@@ -7,6 +7,7 @@ public class Main {
 //		new StreamOperation().Example1();
 //		new FunctionalInterfaces().SupplierExample();
 //		new FunctionalInterfaces().ConsumerExample();
-		new FunctionalInterfaces().PredicateExample();
+//		new FunctionalInterfaces().PredicateExample();
+		new FunctionalInterfaces().FunctionExample();
 	}
 }

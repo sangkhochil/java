@@ -667,11 +667,104 @@ public interface Predicate {
 	Predicate<Integer> predicate = i -> i > 100;
 ```
 
+### UnaryOperator
+The Java UnaryOperator interface is a functional interface that represents an operation which takes a single parameter and returns a parameter of the same type,
+
+```java
+	UnaryOperator<Person> unaryOperator = (person) -> { person.name = "New Name"; return person; };
+```
+
+The UnaryOperator interface can be used to represent an operation that takes a specific object as parameter, modifies that object, and returns it again
+
+### BinaryOperator
+
+The Java BinaryOperator interface is a functional interface that represents an operation which takes two parameters and returns a single value. Both parameters and the return type must be of the same type.
+The Java BinaryOperator interface is useful when implementing functions that sum, subtract, divide, multiply etc.
+
+```java
+	BinaryOperator<MyValue> binaryOperator = (value1, value2) -> { value1.add(value2); return value1; };
+```
+
+### Function
+The Java Function interface (java.util.function.Function) interface is one of the most central functional interfaces in Java. 
+The Function interface represents a function (method) that takes a single parameter and returns a single value.
+
+```java
+	public interface Function<T,R> {
+		public <R> apply(T parameter);
+	}
+```
+```java
+	public class AddThree implements Function<Long, Long> {
+
+		@Override
+		public Long apply(Long aLong) {
+			return aLong + 3;
+		}
+	}
+	
+	Function<Long, Long> adder = new AddThree();
+	Long result = adder.apply((long) 4);
+	System.out.println("result = " + result);
+```
+
+The Function interface has also a default compose method that allows to combine several functions into one and execute them sequentially:
+
+```java
+	Function<Integer, String> intToString = Object::toString;
+	Function<String, String> quote = s -> "'" + s + "'";
+	 
+	Function<Integer, String> quoteIntToString = quote.compose(intToString);
+	 
+	assertEquals("'5'", quoteIntToString.apply(5));
+```
+####  Primitive Function Specializations
+Since a primitive type can’t be a generic type argument, there are versions of the Function interface for most used primitive types double, int, long, and their combinations in argument and return types:
+
+* IntFunction, LongFunction, DoubleFunction: arguments are of specified type, return type is parameterized
+* ToIntFunction, ToLongFunction, ToDoubleFunction: return type is of specified type, arguments are parameterized
+* DoubleToIntFunction, DoubleToLongFunction, IntToDoubleFunction, IntToLongFunction, LongToIntFunction, LongToDoubleFunction — having both argument and return type defined as primitive types, as specified by their names
+
+There is no out-of-the-box functional interface for, say, a function that takes a short and returns a byte, but nothing stops you from writing your own:
+```java
+	@FunctionalInterface
+	public interface ShortToByteFunction {	 
+		byte applyAsByte(short s);	 
+	}
+```
+
+#### Two-Arity Function Specializations
+To define lambdas with two arguments, we have to use additional interfaces that contain “Bi” keyword in their names: BiFunction, ToDoubleBiFunction, ToIntBiFunction, and ToLongBiFunction.
+
+BiFunction has both arguments and a return type generified, while ToDoubleBiFunction and others allow you to return a primitive value.
+
+One of the typical examples of using this interface in the standard API is in the Map.replaceAll method, which allows replacing all values in a map with some computed value.
+```java
+	Map<String, Integer> salaries = new HashMap<>();
+	salaries.put("John", 40000);
+	salaries.put("Freddy", 30000);
+	salaries.put("Samuel", 50000);
+	 
+	salaries.replaceAll((name, oldValue) -> 
+	  name.equals("Freddy") ? oldValue : oldValue + 10000);
+
+```
+
+### Legacy Functional Interfaces
+Not all functional interfaces appeared in Java 8. Many interfaces from previous versions of Java conform to the constraints of a FunctionalInterface and can be used as lambdas. 
+A prominent example is the Runnable and Callable interfaces that are used in concurrency APIs. In Java 8 these interfaces are also marked with a @FunctionalInterface annotation. 
+This allows us to greatly simplify concurrency code:
+
+```java
+	Thread thread = new Thread(() -> System.out.println("Hello From Another Thread"));
+	thread.start();
+```
 #### Reference's ####
 01. https://java2blog.com/
 02. https://howtodoinjava.com
 03. https://www.journaldev.com
 04. https://www.geeksforgeeks.org/
+05. https://www.baeldung.com/
 
   
 
