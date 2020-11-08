@@ -8,6 +8,7 @@ public class Main {
 //		new FunctionalInterfaces().SupplierExample();
 //		new FunctionalInterfaces().ConsumerExample();
 //		new FunctionalInterfaces().PredicateExample();
-		new FunctionalInterfaces().FunctionExample();
+//		new FunctionalInterfaces().FunctionExample();
+		new CollectorsOperation().Example1();
 	}
 }

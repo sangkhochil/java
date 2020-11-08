@@ -759,6 +759,10 @@ This allows us to greatly simplify concurrency code:
 	Thread thread = new Thread(() -> System.out.println("Hello From Another Thread"));
 	thread.start();
 ```
+
+## Collectors
+Collectors is one of the utility class in JDK which contains a lot of utility functions. It is mostly used with Stream API as a final step.
+
 #### Reference's ####
 01. https://java2blog.com/
 02. https://howtodoinjava.com
