@@ -761,7 +761,190 @@ This allows us to greatly simplify concurrency code:
 ```
 
 ## Collectors
-Collectors is one of the utility class in JDK which contains a lot of utility functions. It is mostly used with Stream API as a final step.
+Collectors is one of the utility class in JDK which contains a lot of utility functions. It is mostly used with Stream API as a final step. such as average, count, groupby, sort the list with the help of Collectors.
+
+## Java 9
+interface in Java is a concept which is used to achieve abstraction. an interface can contain only abstract methods and constants. Java 8 allows to add default and static methods as well.
+Java 9, interface allows creating private and private static methods, so here is the java interface now
+
+* Abstract methods
+* Constant variables
+* Default methods (added in Java 8)
+* Static methods (added in Java 8)
+* Private methods (added in Java 9)
+* Private static methods (added in Java 9)
+
+#### Interface Private Method
+These methods can’t be accessible outside the interface and don’t inherit to the interface or implementing class.
+The primary purpose behind to add private method was to share common code between non-abstract methods within the interface.
+
+```java
+	interface Workable{
+		default void workTime() {
+			done();
+		}
+		private void done() {
+			System.out.println("work is done.");
+		}
+	}
+```
+
+#### Interface Private Static Methods
+Like private instance methods, private methods can be static as well. 
+A private static method can not be accessible from outside the interface and can only be accessible inside the default or static methods.
+
+```java
+	interface Workable{
+		default void workTime() {
+			done();
+			tea();
+		}
+		private void done() {
+			System.out.println("work is done");
+		}
+		private static void tea() {
+			System.out.println("Let's have a Tea");
+		}
+	}
+```
+
+#### Key-points to remember
+* Interface private methods must have implementation body; they can’t be declared as abstract methods.
+* A static method can call only private static method, but a default method can call both the static and non-static(instance) private methods.
+* The interface private methods support sharing common code between non-abstract methods(default, static and private).
+
+### try with resources
+It helps to close all the resources declared within try block. It automatically closes the resources after being used. A resource can be any file or a database connection.
+
+* What type of resources can be handled automatically?
+Java says, any object that implements java.lang.AutoCloseable interface and java.io.Closeable interface, can be used as a resource.
+
+* Old feshion
+```java
+	try {
+		FileOutputStream fileOutputStream =new FileOutputStream("info.txt");
+		fileOutputStream.write("Java2blog is a technical blog".getBytes());
+		System.out.println("File is written");
+		fileOutputStream.close(); // closing resource
+	}catch(Exception e) {
+		System.out.println(e);
+	}
+```
+* new feshion
+```java
+	try (FileOutputStream fileOutputStream = new FileOutputStream("info.txt")) {
+		fileOutputStream.write("Java2blog is a technical blog".getBytes());
+		System.out.println("File is written");
+		// fileOutputStream.close(); No need to close manually 
+	}catch(Exception e) {
+		System.out.println(e);
+	}
+```
+
+* Basic syntex
+``` java
+	try( // resources ){
+		// body of try block
+	}catch( // Exception ) {
+		// handler code
+	}
+```
+
+### Javadoc
+The Javadoc is a tool like javac and a part of JDK. It is used to generate HTML documentation of Java source code.
+
+### Underscore 
+Underscore(_) is a symbol that is used to combine multi-words in a single identifier sometimes refers to a variable in a programming context.
+In Java, to create a lengthy variable, we prefer to use underscore (_) such as employee_id, employee_name etc.
+
+This code will work in Java 8 but will not work new java release.
+```java
+	int _ = 10; // valid till Java 8
+	System.out.println(_);
+```
+
+Underscore as variable in Java 9, If we execute this example with Java 9 then it reports an error
+```java
+	int _a = 10; // valid
+	System.out.println(_a);
+	int a_ = 20; // valid
+	System.out.println(a_);
+	int a_b = 20; // valid
+	System.out.println(a_b);
+	int _ = 10; // invalid
+	System.out.println(_);
+```
+But all are ok on Java 8
+
+### Dimoand Operator
+Type inference is a feature of Java that was introduced in Java 7. Now, Java compiler can infer type of a data automatically.
+```java
+	List<String> list = new ArrayList<String>(); // Before Java 7
+	List<String> list = new ArrayList<>(); // From Java 7 and onward
+```
+We can see that Java 7 allows us to use empty diamond operator to avoid code redundancy.
+But we can use this Java collection only, what about the anonymous class? If we do the same in Java 7 with anonymous class, means use empty diamond in an anonymous class then compiler reports an error.
+
+See the example below:
+```java
+	abstract class CalculateAble<T>{
+		abstract T add(T a, T b); 
+	}	 
+	public class Main {	 
+		public static void main(String[] args) {
+			CalculateAble<Integer> a = new CalculateAble<>() { // diamond operator is empty 
+				public Integer add(Integer a, Integer b){  
+					return a+b;   
+				}  
+			};
+			int result = a.add(10, 20);
+			System.out.println(result);
+		}
+	}
+```
+Output:
+```java
+	error: cannot infer type arguments for CalculateAble
+	CalculateAble a = new CalculateAble() {
+	^
+	reason: cannot use ” with anonymous inner classes
+```
+Correction:
+```java 
+ DemoCalculator<Integer> a = new DemoCalculator<Integer>() { // diamond operator is not empty 
+            Integer show(Integer a, Integer b){  
+                return a+b;   
+            }  
+        };    
+ 
+```
+
+### Anonymous class: Java 9 Improvement
+Java improved its type inference feature and allowed us to use (diamond) in the anonymous class too.
+```java
+	abstract class CalculateAble<T>{
+		abstract T add(T a, T b);	 
+	}	 
+	public class Main {	 
+		public static void main(String[] args) {
+			CalculateAble<Integer> a = new CalculateAble<>() { // diamond operator is empty 
+				public Integer add(Integer a, Integer b){  
+					return a+b;   
+				}  
+			};
+			int result = a.add(10, 20);
+			System.out.println(result);
+		}
+	}
+```
+
+### @SafeVarargs Annotation
+The @SafeVarargs is an annotation that is used to perform safe operations. When a method takes variable arguments, then it may cause to unsafe operation, 
+so the @SafeVarargs annotation tells to the compiler to perform safe operations.
+For example, if we don’t use the annotation the compiler reports warning:
+
+We can use this annotation to final and static and private (from Java 9) methods only of a class
+
 
 #### Reference's ####
 01. https://java2blog.com/

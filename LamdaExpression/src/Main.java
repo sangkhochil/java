@@ -9,6 +9,7 @@ public class Main {
 //		new FunctionalInterfaces().ConsumerExample();
 //		new FunctionalInterfaces().PredicateExample();
 //		new FunctionalInterfaces().FunctionExample();
-		new CollectorsOperation().Example1();
+//		new CollectorsOperation().Example1();
+		new ForEachExample().Example();
 	}
 }
