@@ -32,7 +32,7 @@ public class ForEachExample {
 		});
 		
 		System.out.println(list);
-		Collections.sort(list, (o1, o2) -> o1.getEmployeeName().compareTo(o2.getEmployeeName()));
+		Collections.sort(list, (Employee o1, Employee o2) -> o1.getEmployeeName().compareTo(o2.getEmployeeName()));
 		System.out.println(list);
 	}
 

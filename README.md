@@ -5,6 +5,109 @@ The hashcode of a Java Object is simply a number, it is 32-bit signed int, that 
 We know that hash code is an unique id number allocated to an object by JVM. ...
 If two objects are equals then these two objects should return same hash code.
 
+# Control Statements
+
+## switch Vs else-if
+switch more faster than else-if. In switch every condition/case is same type but for else-if there are multiple type's. if condition more than five, switch statement is always better than else-if.
+switch statement create a “jump table” that it will use for selecting the path of execution depending on the value of the expression.
+If a switch contains more than five items, it’s implemented using a lookup table or a hash list.
+
+# Object Oriented
+## Abstraction 
+Abstraction is a concept of exposing only essential details and hiding implementation details. 
+It is one of the essential OOPs concept apart from encapsulation, inheritance and polymorphism. Abstraction retains only information which is most relevant for the specific purpose.
+
+* For example:
+ArrayList stores objects in sequential manner as list and you can use add() method to add elements to ArrayList, remove() method to remove elements from it, and get() method to retrieve element from the ArrayList.
+That’s all you need to know to use ArrayList. That’s abstraction in java.
+
+If you want to use ArrayList, you don’t need to understand how ArrayList works internally.
+ArrayList uses abstraction by implementing List interface and List interface provides all necessary methods to use ArrayList.
+
+Another real life example.
+When you search for any text on google, you just type text in text area and click on search button. What happens behind the scenes, how google search algorithm works, you might not be aware of that.
+
+* Ways to achieve abstraction
+We can achieve abstraction using two ways in java.
+
+1. Abstract class(0 to 100% abstraction)
+2. Interface (100% abstraction)
+
+### Abstraction vs Encapsulation
+Encapsulation is process of binding related data(variables and methods) into a class.We can achieve encapsulation using access modifers such as public, private, protected.
+
+Encapsulation is implementation of desired abstraction.
+Abstraction is more of design level concept and helps you to provide only essential details and hiding implementation details. We can achieve abstraction by abstract class and interface.
+
+## Interface 
+Abstract class in java which provides partial abstraction. Interface is one of the core part of java and is used to achieve full abstraction.
+
+Interface is generally used to provide contract for class to implement. Interface do not have implementation of any method.A class implements an interface, thereby inheriting the abstract methods of the interface. 
+So it is kind of signing a contract, you agree that if you implement this interface, then you have to use its methods.It is just a pattern, it can not do anything itself.
+
+All the methods in the interface are by default public and abstract and all variables are public static final.
+
+## Abstract class
+An abstract class is the class which is declared abstract and can have abstract or non abstract methods. 
+An abstract class can not be instantiated. It can be extended by subclass to implement abstract methods and either use or override concrete methods.
+
+* When do you need abstract class in java?
+Let’s understand it with the help of the example. You have Shape class and it has some methods such as draw(), calcualteArea() etc. Drawing a shape is common for all the shapes but calculateArea() is different for each shape.
+
+## Difference between Abstract Class and Interface
+Parameter | Abstract class | Interface
+--------- | -------------- | ---------
+Default method Implementation | It can have default method implementation | Interfaces are pure abstraction.It can not have implementation at all but in java 8, you can have default methods in interface.
+Implementation | Subclasses use extends keyword to extend an abstract class | subclasses use implements keyword to implement interfaces
+Constructor | Abstract class can have constructor | Interface  can not have constructor
+Different from normal java class | Abstract classes are almost same as java classes except you can not instantiate it. | Interfaces are altogether different type
+Access Modifier | Abstract class methods can have public ,protected,private and default modifier | Interface methods are by default public. you can not use any other access modifier with it
+Main() method | Abstract classes can have main method so we can run it | Interface do not have main method so we can not run it.
+Multiple inheritance | Abstract class can extends one other class and can implement one or more interface. | Interface can extends to one or more interfaces only
+Speed | It is faster than interface | Interface is somewhat slower as it takes some time to find implemented method in class
+Adding new method | If you add new method to abstract class, you can provide default implementation of it. So you don’t need to change your current code | If you add new method to interface, you have to change the classes which are implementing that interface
+
+### When to use Abstract class and interface
+* If we have lot of methods and want default implementation for some of them, then go with abstract class
+* If we want to implement multiple inheritance then we have to use interface. As java does not support multiple inheritance, subclass can not extend more than one class but we can implement multiple interface so we can use interface for that.
+* If our base contract keeps on changing then we should use an abstract class. Because if our base contract keeps on changing and we still use an interface, we would have to change all the classes which implements that interface every time the contract changes.
+
+## Polymorphism 
+Polymorphism in java is one of core Object oriented programming concepts with Abstraction, encapsulation, and inheritance.
+Polymorphism means one name many forms. In Java, polymorphism can be achieved by method overloading and method overriding.
+
+Polymorphism in java with example
+* Compile time polymorphism.
+* Run time polymorphism.
+
+### Compile time Polymorphism
+Compile time Polymorphism is nothing but method overloading in java
+
+### Runtime Polymorphism
+Runtime Polymorphism is nothing but method overriding in java
+If subclass is having same method as base class then it is known as method overriding Or in another word, 
+If subclass provides specific implementation to any method which is present in its one of parents classes then it is known as method overriding
+
+## Encapsulation
+Encapsulation in java is the process of binding related data(variables) and functionality(methods) into a single unit called class. 
+Encapsulation can be achieved by using access modifier such as public, private, protected or default, so our class will be safe from unauthorized access by others and will be simple to maintain.
+
+* We can create fully encapsulated class by
+Making variables private
+Providing getters and setters methods for the accessing the variables.
+
+* Encapsulation is also termed as data hiding because you are making variables private and variables can be only excessed through public getters and setters.
+
+### Advantages of Encapsulation in java:
+* It provides control over data. For example: If we want to check if age of employee is greater than 18 in setter method(setAge(int age)). we can easily do it in setter method without breaking any code. 
+* Increase reusability.
+* Makes class easy to use for other clients.
+* It helps the developer to write code more flexible and maintainable by binding them into a single unit and use appropriate access modifier to access the code as per need.
+
+### Difference between abstraction and encapsulation
+* Encapsulation means data hiding using getter and setters. Abstraction means hiding implementation details using abstract class and interface.
+* Abstraction is more of design level concept and Encapsulation is more of implementation level concept.
+
 # Java Collections
 
 ## Default java collections capacity
