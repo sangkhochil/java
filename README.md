@@ -5,6 +5,19 @@ The hashcode of a Java Object is simply a number, it is 32-bit signed int, that 
 We know that hash code is an unique id number allocated to an object by JVM. ...
 If two objects are equals then these two objects should return same hash code.
 
+### mmutable class
+Immutable class is class whose state can not be changed once created.
+String is best example for immutable class. Once you create a String, you can not change it.
+Immutable class is very simple to understand, it has only one state. Immutable class is carefully instantiated by the constructor. 
+Immutable classes are thread safe. This is biggest advantage of immutable class, you don’t need to apply synchronization for immutable objects.
+
+#### Steps for creating a immutable class
+* Make your class final
+* Declare all instance variable with private and final
+* Say no to setter methods 
+* Initialize all variables in constructor
+* Perform cloning of mutable objects while returning from getter method
+
 # Control Statements
 
 ## switch Vs else-if
