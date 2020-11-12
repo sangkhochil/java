@@ -65,7 +65,7 @@ An abstract class is the class which is declared abstract and can have abstract 
 An abstract class can not be instantiated. It can be extended by subclass to implement abstract methods and either use or override concrete methods.
 
 * When do you need abstract class in java?
-Let’s understand it with the help of the example. You have Shape class and it has some methods such as draw(), calcualteArea() etc. Drawing a shape is common for all the shapes but calculateArea() is different for each shape.
+Let’s understand it with the help of the example. we have Shape class and it has some methods such as draw(), calcualteArea() etc. Drawing a shape is common for all the shapes but calculateArea() is different for each shape.
 
 ## Difference between Abstract Class and Interface
 Parameter | Abstract class | Interface
@@ -174,7 +174,7 @@ Providing getters and setters methods for the accessing the variables.
 
 ### Why to choose ArrayList vs Array:
 * Array is fixed length data structure If array is full , you can not add element to it, where as ArrayList in java can dynamically grow and shrink as per our need.
-* You can use generics with ArrayList but not with Array
+* we can use generics with ArrayList but not with Array
 * ArrayList have predefined methods which can be used to perform operations.
 
 ### Some important points about ArrayList in java are:
@@ -217,7 +217,7 @@ Performance | Due to theadSafe and Synchronized,it is often slower than HashMap 
 Null key | Do not allow | Allows null key as well as values
 Fail fast | enumeration in hashtable is not fail fast | Iterator in hashMap is fail fast
 Extends | It extends Dictionary class which is quite old | It extends AbstractMap class
-Alternative | No alternative | You can use ConcurrentHashMap for multi thread environment
+Alternative | No alternative | we can use ConcurrentHashMap for multi thread environment
 
 ### Some important points need to be discussed.
 
@@ -257,7 +257,7 @@ For example:
 * If any class implements comparable inteface then collection of that object can be sorted automatically using Collection.sort() or Arrays.sort().Object will be sort on the basis of compareTo method in that class.
 
 ## Comparator:
-When you want to sort the list of objects of a class,you can use Comparator interface. You don’t need to implement Comparator on the class whose objects need to be sorted. You can create a separate class and implement a Comparator interface as below.
+When you want to sort the list of objects of a class,you can use Comparator interface. we don’t need to implement Comparator on the class whose objects need to be sorted. we can create a separate class and implement a Comparator interface as below.
 ```java
 	import java.util.Comparator;
 	 
@@ -320,9 +320,9 @@ Multithreading can be of advantage specially when now a days, machine has multip
 3. Process can have multiple threads but thread is the smallest unit which can execute concurrently with other threads.
 4. Process are quite heavyweight and have more overhead whereas thread is light weight and have less overhead.
 5. Process do not depend on each other whereas threads are not independent as they share address space.
-6. You do not require synchronization in case of process. Threads require synchronization to avoid unexpected scenarios.
+6. we do not require synchronization in case of process. Threads require synchronization to avoid unexpected scenarios.
 7. Processes can communicate to each other using inter-process communication only where as thread can communicate directly as thread share same address space.
-8. You can easily create new threads by calling thread’s start method but you need to copy resources of parent process to create a new child process.
+8. we can easily create new threads by calling thread’s start method but you need to copy resources of parent process to create a new child process.
 
 ### Priority of a Thread
 
@@ -486,7 +486,7 @@ And this time, condition is met and incremented value 12 is returned to thread 2
 * ConcurrentHashMap introduced in Java 5 with other concurrency utils such as CountDownLatch, CyclicBarrier and BlockingQueue.
 * ConcurrentHashMap is very similar to HashTable but it provides better concurrency level.
 * we can synchonize HashMap using Collections.synchronizedMap(Map)
-* difference between ConcurrentHashMap and Collections.synchronizedMap(Map)In case of Collections.synchronizedMap(Map), it locks whole HashTable object but in ConcurrentHashMap, it locks only part of it. You will understand it in later part.
+* difference between ConcurrentHashMap and Collections.synchronizedMap(Map)In case of Collections.synchronizedMap(Map), it locks whole HashTable object but in ConcurrentHashMap, it locks only part of it. we will understand it in later part.
 * ConcurrentHashMap class has a inner class called Segment
 * ConcurrentHashMap locks only part of it.It actually locks a Segment
 
@@ -526,7 +526,7 @@ Deserialization is the process of converting Object stream to actual Java Object
 ### serialVersionUID
 The serialVersionUID is a universal version identifier for a Serializable class.
 Deserialization uses this number to ensure that a loaded class corresponds exactly to a serialized object. If no match is found, then an InvalidClassException is thrown.
-serialVersionUID must be Static and final.You can assign any number to it.
+serialVersionUID must be Static and final.we can assign any number to it.
 If serialVersionUID is not specified in class, JVM will calculate the value according to the JVM specification.
 
 * Externalizable
@@ -541,7 +541,7 @@ Transient variable is variable whose value is dose not serialized during seriali
 
 Parameter | Serializable | Externalizable
 --------- | ------------ | --------------
-Marker interface | It is marker interface. You don’t have to provide implementation of any method. | Externalizable is not marker interface, you have to override writeExternal and readExternal method.
+Marker interface | It is marker interface. we don’t have to provide implementation of any method. | Externalizable is not marker interface, you have to override writeExternal and readExternal method.
 Control | Serializable interface has less control over serialization process and it is optional to override readObject and writeObject. | Externalizable interface has more control over serialization process and it is mandatory to override writeExternal and readExternal.
 Performance | JVM uses reflection to perform serialization in the case of Serializable interface which is quite slow. | Programmer have to implement readExternal and writeExternal methods but it relatively results in better performance
 Constructor called during Deserialization | Default constructor is not called during Deserialization process. | Default constructor is called during Deserialization process.
@@ -632,7 +632,7 @@ Lambda expression can be applied for the abstract method of functional Interface
 	   (int a)->{System.out.println(a)}; // One argument, will print value of a
 	   (int a,int b)-> {a+b};//two argument, will return sum of these two integers
    ```
-   2. You can choose to not declare the type of arguments as it can be inferred from context.
+   2. we can choose to not declare the type of arguments as it can be inferred from context.
    ```java
 		(a,b)->{a+b}; // two argument, will return sum of these two numbers
    ```
@@ -1060,6 +1060,42 @@ so the @SafeVarargs annotation tells to the compiler to perform safe operations.
 For example, if we don’t use the annotation the compiler reports warning:
 
 We can use this annotation to final and static and private (from Java 9) methods only of a class
+
+## Garbage Collection 
+JVM Memory is divided into three parts
+
+1. weng generation
+2. Old generation
+3. Metaspace (Permanent generation)
+
+### weng Generation
+As the name suggests, young generation is the area where newly created objects are allocated.
+
+- When young generation fills up, it cause minor garbage collection aka Minor GC.
+- When minor Gcs occurs, dead objects will be removed from young generation.
+- If you have lot of dead objects in young generation, Minor GC will be perfomed faster.
+- All minor GCs are “stop the world” events, so when minor GCs occurs, application threads will also stop.
+
+weng generation is divided into 3 parts.
+
+- Eden space
+- Survivor space S0
+- Survivor space S1
+
+young and old generation piturial view
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/GC_1.png?raw=true)
+
+* All newly created objects are allocated in eden space.
+* When Eden space is completely filled with objects then minor GC will occur. All the objects which are not dead or unreferenced will be moved to one of the survivors spaces. In our case, let’s say all the objects are moved to S0.
+
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/GC_2.jpg?raw=true)
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/GC_3.jpg?raw=true)
+When Eden space is filled again, then all the live objects in Eden space andSurvivor space S0 will be moved to Survivor space S1.
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/GC_4.jpg?raw=true)
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/GC_5.jpg?raw=true)
+Once objects are survived multiple cycles of minor GC, they will be moved to old generation. we can control this threshold by MaxTenuringThreshold. The actual tenuring threshold is dynamically adjusted by JVM.
+
+
 
 
 #### Reference's ####
