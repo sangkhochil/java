@@ -1064,11 +1064,11 @@ We can use this annotation to final and static and private (from Java 9) methods
 ## Garbage Collection 
 JVM Memory is divided into three parts
 
-1. weng generation
+1. Young generation
 2. Old generation
 3. Metaspace (Permanent generation)
 
-### weng Generation
+### Young Generation
 As the name suggests, young generation is the area where newly created objects are allocated.
 
 - When young generation fills up, it cause minor garbage collection aka Minor GC.
@@ -1076,7 +1076,7 @@ As the name suggests, young generation is the area where newly created objects a
 - If you have lot of dead objects in young generation, Minor GC will be perfomed faster.
 - All minor GCs are “stop the world” events, so when minor GCs occurs, application threads will also stop.
 
-weng generation is divided into 3 parts.
+Young generation is divided into 3 parts.
 
 - Eden space
 - Survivor space S0
@@ -1090,13 +1090,61 @@ young and old generation piturial view
 
 ![alt text](https://github.com/sangkhochil/java/blob/main/Resources/GC_2.jpg?raw=true)
 ![alt text](https://github.com/sangkhochil/java/blob/main/Resources/GC_3.jpg?raw=true)
-When Eden space is filled again, then all the live objects in Eden space andSurvivor space S0 will be moved to Survivor space S1.
+* When Eden space is filled again, then all the live objects in Eden space andSurvivor space S0 will be moved to Survivor space S1.
 ![alt text](https://github.com/sangkhochil/java/blob/main/Resources/GC_4.jpg?raw=true)
 ![alt text](https://github.com/sangkhochil/java/blob/main/Resources/GC_5.jpg?raw=true)
-Once objects are survived multiple cycles of minor GC, they will be moved to old generation. we can control this threshold by MaxTenuringThreshold. The actual tenuring threshold is dynamically adjusted by JVM.
+* Once objects are survived multiple cycles of minor GC, they will be moved to old generation. we can control this threshold by MaxTenuringThreshold. The actual tenuring threshold is dynamically adjusted by JVM.
 
+#### check memory allocation in Visual GC (A visualVM plugin) - tool for visualization of JVM memory
 
+### Old generation
+* It is used to hold old long surviving objects
+* It is generally larger than the young generation.
+* When tenured space is completely filled(or predefined threshold) with objects then Major GC will occur. It will reclaim the memory and free up space.
+* Often, Major GCs are slower and less frequent than minor GC.
 
+#### How can we use this information to optimize memory?
+It depends on nature of application.
+If we have lots of temporary objects then there will be lot of minor gc. we can provide arguments XX:NewRatio=1 to distribute 50% to young generation and 50% to old.
+By default, NewRatio=2 hence young Generation is 1/3 of total heap.
+Similarly, If we have too many long-lived objects, then we might need to increase size of tenure space by putting high value of NewRatio.
+
+### Why two survivor spaces?
+We have two survivor spaces(S0, S1) to avoid memory fragmentation. Each time we copy objects from eden to survivor and we get empty eden space and 1 empty survivor space.
+
+## Garbage Collection Algorithms
+JVM comes with several algorithms for young and old generation. There are 3 types of algorithms
+
+### Serial collector
+It uses single thread to perform all the garbage collection and is suitable for basic application with single processor machines.
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/SerialGC.jpg?raw=true)
+
+### Parallel collector
+It uses multiple CPUs to perform garbage collector. While serial collector uses 1 thread to perform GC, parallel GC uses several threads to perform GC and it is useful when there is enough memory and good number of cores.
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/parallelGC.jpg?raw=true)
+
+### Concurrent collector
+Concurrent collector performs garbage collection with application threads. It is useful for applications which have medium to large datasets and require quick response time.
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/concurrentGC.jpg?raw=true)
+we can use different GC algorithms for young and old generations but we can pair only compatible algorithms.
+For example: We can not pair Parallel Scavenge for young generation to Concurrent mark sweep for old as parallel scavenge does not provide synchronization which is required in CMS.
+Young Collector | Old Collector | JVM options
+--------------- | ------------- | ------------ 
+Serial (DefNew) | Serial Mark-Sweep-Compact |-XX:+UseSerialGC	
+Parallel scavenge (PSYoungGen) | Serial Mark-Sweep-Compact (PSOldGen) | -XX:+UseParallelGC	
+Parallel scavenge (PSYoungGen) |Parallel Mark-Sweep-Compact (ParOldGen) | -XX:+UseParallelOldGC	
+Serial (DefNew) | Concurrent Mark Sweep | -XX:+UseConcMarkSweepGC -XX:-UseParNewGC	
+Parallel (ParNew) |	Concurrent Mark Sweep | -XX:+UseConcMarkSweepGC -XX:+UseParNewGC	
+G1 |  |	-XX:+UseG1GC
+
+### G1
+The Garbage First Garbage Collector (G1 GC) is the low-pause, server-style generational garbage collector for Java HotSpot VM.
+The G1 GC uses concurrent and parallel phases to achieve its target pause time and to maintain good throughput.
+A garbage collector (GC) is a memory management tool. The G1 GC achieves automatic memory management through the following operations:
+
+Allocating objects to a young generation and promoting aged objects into an old generation.
+Finding live objects in the old generation through a concurrent (parallel) marking phase. The Java HotSpot VM triggers the marking phase when the total Java heap occupancy exceeds the default threshold.
+Recovering free memory by compacting live objects through parallel copying.
 
 #### Reference's ####
 01. https://java2blog.com/
