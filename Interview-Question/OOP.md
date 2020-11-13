@@ -1,4 +1,4 @@
-# Java Core
+# OOP Concept
 ### 1. What are some core concepts of OOPS in java?
 Core concepts of OOPs are :
 - Polymorphism
