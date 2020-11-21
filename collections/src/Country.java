@@ -32,6 +32,7 @@ public class Country {
 
 	@Override
 	public boolean equals(Object obj) {
+		System.out.println("In equals");
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -54,6 +55,7 @@ public class Country {
 
 	@Override
 	public int hashCode() {
+		System.out.println("In hashcode");
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());

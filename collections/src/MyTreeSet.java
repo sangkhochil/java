@@ -81,8 +81,8 @@ class CountryTreeSet implements Comparable {
 	@Override
 	public int compareTo(Object arg0) {
 		CountryTreeSet country = (CountryTreeSet) arg0;
-
-		return (this.countryName.compareTo(country.countryName));
+		int result  = this.countryName.compareTo(country.countryName);
+		return (result);
 	}
 
 	public String getCountryName() {

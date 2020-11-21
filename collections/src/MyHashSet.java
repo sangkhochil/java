@@ -8,6 +8,12 @@ public class MyHashSet {
 		nameSet.add("David");
 		nameSet.add("Carlos");
 		nameSet.add("John");
+		nameSet.add(123);
+		nameSet.add(123);
+		nameSet.add(true);
+		nameSet.add(true);
+		nameSet.add(false);
+		nameSet.add(12.3);
 		System.out.println("size of nameSet=" + nameSet.size());
 		System.out.println(nameSet);
 	}
@@ -26,5 +32,8 @@ public class MyHashSet {
 
 		System.out.println("size of nameSet=" + countrySet.size());
 		System.out.println(countrySet);
+		Country bang3 = new Country();
+		bang3.setName("Bangladesh1");
+		System.out.println("exist: "+ countrySet.contains(bang3));
 	}
 }
