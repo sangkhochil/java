@@ -98,6 +98,7 @@ Immutable object’s hashcode won’t change, so it makes key retrieval faster a
 String, Integer, Long, Double, Character, Boolean etc and much more. Date is not an immutable class.
 
 
+
 #### Reference's ####
 01. https://java2blog.com/
 02. https://howtodoinjava.com
