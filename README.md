@@ -580,6 +580,20 @@ throws keyword is used to declare list of all exception which method might throw
 
 # Lambda Expressions
 Java 8 has introduced a new feature called Lambda expressions. It is considered to be a major change in java. As this change bring functional programming into Java.
+A lambda expression is a short block of code which takes in parameters and returns a value. Lambda expressions are similar to methods, but they do not need a name and they can be implemented right in the body of a method.
+
+Syntax
+The simplest lambda expression contains a single parameter and an expression:
+
+parameter -> expression
+
+To use more than one parameter, wrap them in parentheses:
+
+(parameter1, parameter2) -> expression
+
+Expressions are limited. They have to immediately return a value, and they cannot contain variables, assignments or statements such as if or for. In order to do more complex operations, a code block can be used with curly braces. If the lambda expression needs to return a value, then the code block should have a return statement.
+
+(parameter1, parameter2) -> { code block }
 
 ## Functional Interfaces
 Functional interfaces are those interfaces which have only one abstract method, it can have default methods, static methods and it can also override java.lang.Object class method.
