@@ -408,6 +408,8 @@ FutureTask class has been introduced in JDK 5 with Executor Framework. FutureTas
 It also provides method to see if the computation is done or not. We can query FutureTask object and get the result of computation.
 If we call get method on FutureTask object, it is blocking call and returns once the computation is done.
 
+FutureTask is normally used to wrap Runnable or Callable objects and submit them to ExecutorService for asynchronous execution.
+
 ### Callable vs Runnable
 
 * For implementing Runnable, the run() method needs to be implemented which does not return anything, while for a Callable, the call() method needs to be implemented which returns a result on completion. Note that a thread can’t be created with a Callable, it can only be created with a Runnable.
