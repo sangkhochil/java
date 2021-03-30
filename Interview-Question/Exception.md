@@ -19,6 +19,7 @@ finally : This block is used to write any clean up code irrespective of whether 
 
 ### 4. Difference between checked exception, unchecked exceptionand and errors
 Parameter | Checked Exception | Unchecked Exception | Error
+-----------------------------------------------------------
 How to recognise | sub class of Exception class(Compile Time Exception) | sub class of RuntimeException class | sub class of Error class
 Good to catch | Yes | Yes | No
 Is Program required to handle or declared | Yes | No | No
