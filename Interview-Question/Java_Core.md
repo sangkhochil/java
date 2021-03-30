@@ -115,6 +115,7 @@ Used by | Operating system | java classloaders
 Both are mutable.
 
 Parameter | StringBuffer | StringBuilder
+--------  | -----------  | -------------
 Thread-safe | StringBuffer is thread safe. Two threads can not call methods of StringBuffer simultaneously. | StringBuilder is not thread safe, so two threads can call methods of StringBuilder simultaneously.
 Performance | It is less performance efficient as it is thread-safe	| It is more performance efficient as it is not thread-safe.
 
