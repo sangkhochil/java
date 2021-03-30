@@ -116,7 +116,7 @@ Both are mutable.
 
 Parameter | StringBuffer | StringBuilder
 --------  | -----------  | -------------
-Thread-safe | StringBuffer is thread safe. Two threads can not call methods of StringBuffer simultaneously. | StringBuilder is not thread safe, so two threads can call methods of StringBuilder simultaneously.
+Thread-safe | StringBuffer is thread safe synchronized . Two threads can call methods of StringBuffer simultaneously. | StringBuilder is not thread safe, so two threads can not call methods of StringBuilder simultaneously.
 Performance | It is less performance efficient as it is thread-safe	| It is more performance efficient as it is not thread-safe.
 
 ### 22. What are methods we should override when we put an object as key in HashMap?
