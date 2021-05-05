@@ -242,6 +242,12 @@ Duplicates | HashMap allows duplicate value but not duplicate keys | HashSet doe
 Performance | It is faster than hashset as values are stored with unique keys | It is slower than HashMap
 HashCode Calculation | In hash map hashcode value is calculated using key object | In this,hashcode is calculated on the basis of value object.Hashcode can be same for two value object so we have to implement equals() method.If equals() method return false then two objects are different.
 
+## Arrays.sort() Vs Collections.sort()
+
+Collections.sort() Operates on List Whereas Arrays.sort() Operates on an Array.
+
+Arrays.sort() uses Dual-Pivot Quicksort for Primitive Arrays and MergeSort for sorting array of Objects.
+
 ## Comparable interface:
 Class whose objects to be sorted must implement this interface.In this,we have to implement compareTo(Object) method.
 For example:
