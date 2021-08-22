@@ -162,6 +162,39 @@ ConcurrentHashMap uses concept of Segments to store elements. Each Segment logic
 ### 29. Do we have lock while getting value from ConcurrentHashMap?
 There is no lock while getting values from ConcurrentHashMap.Segments are only for write operation.In case of read operation, it allows full concurrency and provides most recently updated value using volatile variables.
 
+### volatile variables
+Volatile variables have the visibility features of synchronized but not the atomicity features. The values of volatile variable will never be cached and all writes and reads will be done to and from the main memory.
+
+Volatile keyword is used to modify the value of a variable by different threads. It is also used to make classes thread safe. It means that multiple threads can use a method and instance of the classes at the same time without any problem. The volatile keyword can be used either with primitive type or objects.
+
+The volatile keyword does not cache the value of the variable and always read the variable from the main memory. The volatile keyword cannot be used with classes or methods. However, it is used with variables. It also guarantees visibility and ordering. It prevents the compiler from the reordering of code.
+
+The contents of the particular device register could change at any time, so you need the volatile keyword to ensure that such accesses are not optimized away by the compiler.
+
+```java
+	class Test  
+	{  
+	static int var=5;  
+	}  
+```
+In the above example, assume that two threads are working on the same class. Both threads run on different processors where each thread has its local copy of var. If any thread modifies its value, the change will not reflect in the original one in the main memory. It leads to data inconsistency because the other thread is not aware of the modified value.
+
+```java
+	class Test  
+	{  
+	static volatile int var =5;  
+	}  
+```
+In the above example, static variables are class members that are shared among all objects. There is only one copy in the main memory. The value of a volatile variable will never be stored in the cache. All read and write will be done from and to the main memory.
+
+Volatile Keyword | Synchronization Keyword
+---------------- | ---------------------
+Volatile keyword is a field modifier. | Synchronized keyword modifies code blocks and methods.
+The thread cannot be blocked for waiting in case of volatile. |	 Threads can be blocked for waiting in case of synchronized.
+It improves thread performance. | Synchronized methods degrade the thread performance.
+It synchronizes the value of one variable at a time between thread memory and main memory. | It synchronizes the value of all variables between thread memory and main memory.
+Volatile fields are not subject to compiler optimization. | Synchronize is subject to compiler optimization.
+
 ### 30. How do we sort Collection of custom objects in java?
 Implement the comparable interface to custom object class(Let’s say Country) and then implement compareTo(Object o) method which will be used for sorting. It will provides default way of sorting custom objects.
 If we want to sort custom object (Lets say country) on different attributes such as name, population etc. We can implement Comparator interface and can be used for sorting.
