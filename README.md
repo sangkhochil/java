@@ -25,6 +25,8 @@ switch more faster than else-if. In switch every condition/case is same type but
 switch statement create a “jump table” that it will use for selecting the path of execution depending on the value of the expression.
 If a switch contains more than five items, it’s implemented using a lookup table or a hash list.
 
+# Object Oriented
+
 ## Why main method declear as public static?
 Java main() method is always static, so that compiler can call it without the creation of an object or before the creation of an object of the class.
 
@@ -33,8 +35,6 @@ Java main() method is always static, so that compiler can call it without the cr
 * While instantiating it has to call the constructor of that class, There will be ambiguity if the constructor of that class takes an argument.
 * Static method of a class can be called by using the class name only without creating an object of a class.
 * The main() method in Java must be declared public, static and void. If any of these are missing, the Java program will compile but a runtime error will be thrown.
-
-# Object Oriented
 ## Abstraction 
 Abstraction is a concept of exposing only essential details and hiding implementation details. 
 It is one of the essential OOPs concept apart from encapsulation, inheritance and polymorphism. Abstraction retains only information which is most relevant for the specific purpose.
