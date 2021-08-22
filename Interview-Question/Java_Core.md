@@ -39,11 +39,13 @@ String, Integer, Long, Double, Character, Boolean etc and much more. Date is not
 ### 10. Why String is declared final or immutable in java?
 ```java
 	String str1="Hello";
-	str1.concat("world");
+	str1.concat("world"); //String does not change because of immutable class, concat method return the concatation value ex. "Helloworld"
 	System.out.println(str1);
+	System.out.println(str1.concat("world"));
 	  
 	// Output will be 
 	Hello
+	Helloworld
 ```
 * String pool
 	If we simply assign a Value to String using double quotes, it is stored in area called string literal pool and one string can be referenced by many reference variables and if String Is mutable,  
