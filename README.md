@@ -417,6 +417,38 @@ We should not hardcode size of thread pool. It should be provided by configurati
 This method returns an unbounded thread pool. It sets maximum pool size to Integer.Max and it will create new threads depending on demand. 
 If demand decreases, it will tear down threads if threads are idle for more than 1 min.
 
+![alt text](https://github.com/sangkhochil/java/blob/main/Resources/executor-framework-java.png?raw=true)
+
+1) SingleThreadExecutor
+The SingleThreadExecutor is a special type of executor that has only a single thread. It is used when we need to execute tasks in sequential order. In case when a thread dies due to some error or exception at the time of executing a task, a new thread is created, and all the subsequent tasks execute in that new one.
+
+```java
+	ExecutorService executor = Executors.newSingleThreadExecutor() 
+```
+
+2) FixedThreadPool(n)
+As the name indicates, it is a thread pool of a fixed number of threads. The tasks submitted to the executor are executed by the n threads and if there is more task they are stored on a LinkedBlockingQueue. It uses Blocking Queue.
+
+```java
+	ExecutorService executor = Executors.newFixedThreadPool(4); 
+```
+
+3) CachedThreadPool
+Creates a thread pool that creates new threads as needed, but will reuse previously constructed threads when they are available. Calls to execute will reuse previously constructed threads if available. If no existing thread is available, a new thread will be created and added to the pool. It uses a SynchronousQueue queue.
+
+```java
+ExecutorService executor = Executors.newCachedThreadPool();  
+```
+
+4) ScheduledExecutor
+The ScheduledExecutor is another special type of executor which we use to run a certain task at regular intervals. It is also used when we need to delay a certain task.
+
+```java
+	ScheduledExecutorService scheduledExecService = Executors.newScheduledThreadPool(1);  
+```
+
+The scheduleAtFixedRate and scheduleWithFixedDelay are the two methods that are used to schedule the task in ScheduledExecutor.
+
 ## FutureTask
 
 FutureTask class has been introduced in JDK 5 with Executor Framework. FutureTask class is the concrete implementation of the Future object and provides methods for start and cancel the task.
