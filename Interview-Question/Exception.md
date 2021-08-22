@@ -180,7 +180,7 @@ Output:
 	In finally block
 	
 	java.lang.NullPointerException
-	at Exception3.exceptionTest_001(Main.java:97)
+	at Exception3.exceptionTest(Main.java:97)
 	at Main.main(Main.java:11)
 ```
 Explanation:
