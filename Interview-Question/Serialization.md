@@ -96,14 +96,14 @@ import java.io.ObjectOutputStream;
 public class SerializeMain {
  public static void main(String[] args) {
  
-  Country india = new Country();
- india.setName("India");
- india.setPopulation(100000);
+  Country bdesh = new Country();
+ bdesh.setName("Bangladesh");
+ bdesh.setPopulation(1800000000);
   try
   {
    FileOutputStream fileOut = new FileOutputStream("country.ser");
    ObjectOutputStream outStream = new ObjectOutputStream(fileOut);
-   outStream.writeObject(india);
+   outStream.writeObject(bdesh);
    outStream.close();
    fileOut.close();
   }catch(IOException i)
@@ -126,12 +126,12 @@ public class DeserializeMain {
 
  public static void main(String[] args) {
   
-  Country india = null;
+  Country bdesh = null;
        try
        {
           FileInputStream fileIn =new FileInputStream("country.ser");
           ObjectInputStream in = new ObjectInputStream(fileIn);
-          india = (Country) in.readObject();
+          bdesh = (Country) in.readObject();
           in.close();
           fileIn.close();
        }catch(IOException i)
@@ -145,8 +145,8 @@ public class DeserializeMain {
           return;
        }
        System.out.println("Deserialized Country...");
-       System.out.println("Country Name : " + india.getName());
-       System.out.println("Population : " + india.getPopulation());
+       System.out.println("Country Name : " + bdesh.getName());
+       System.out.println("Population : " + bdesh.getPopulation());
        
  }
 }
