@@ -77,10 +77,9 @@ By using extends, we are forcing T to be a subclass of animal. We could then hav
 > Cage<Cat> catCage;
 	
 But we could not have a cage of objects, as an object is not a subclass of an animal:
-
-> Cage<Object> objectCage;
-// Compilation error
-
+``java
+Cage<Object> objectCage; // Compilation error
+```
 One advantage of this is that all the methods of animal are available to the compiler. We know our type extends it, so we could write a generic algorithm which operates on any animal. This means we don't have to reproduce our method for different animal subclasses:
 ```java
 public void firstAnimalJump() {
