@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="collections/src"/>
+	<classpathentry kind="src" path="ConcurrentUtils/src"/>
+	<classpathentry kind="src" path="Exception/src"/>
+	<classpathentry kind="src" path="ExecutorFramework/src"/>
+	<classpathentry kind="src" path="GarbageCollection/src"/>
+	<classpathentry kind="src" path="ImmutableClass/src"/>
+	<classpathentry kind="src" path="LamdaExpression/src"/>
+	<classpathentry kind="src" path="Serialization/src"/>
+	<classpathentry kind="src" path="Threads/src"/>
+	<classpathentry kind="output" path="ConcurrentUtils/bin"/>
+</classpath>
