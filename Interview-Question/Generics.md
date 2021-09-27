@@ -134,11 +134,10 @@ Now if we try again, our code will compile. This is because we are now telling t
 
 It's also important to know that the wildcard type is not synonymous to object. This is because a wildcard can be any type whereas an object type is specifically 
 an object (and cannot be a subclass of an object). Let's demonstrate this with an example:
-
-> List<?> wildcardList = new ArrayList<String>();
-
-> List<Object> objectList = new ArrayList<String>(); // Compilation error
-
+```java
+	List<?> wildcardList = new ArrayList<String>();
+	List<Object> objectList = new ArrayList<String>(); // Compilation error
+```
 
 Again, the reason the second line does not compile is that a list of objects is required, not a list of strings. 
 The first line compiles because a list of any unknown type is acceptable.
