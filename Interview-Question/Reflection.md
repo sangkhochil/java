@@ -26,6 +26,7 @@ correct types and values to the developer
 Class Browsers:Class browsers inspect class and its members
 
 Debuggers and Testing Tools
+Spring Framework use reflection.
 
 ### 3. What are the disadvantages of Reflection?
  
