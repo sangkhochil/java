@@ -67,6 +67,7 @@ As we can see, there's no need for a cast, and no need to pass in any generic ty
 When we use bounded parameters, we are restricting the types that can be used as generic type arguments.
 
 As an example, let's say we want to force our generic type always to be a subclass of animal:
+
 ```java
 public abstract class Cage<T extends Animal> {
 	abstract void addAnimal(T animal)
