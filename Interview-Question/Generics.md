@@ -139,6 +139,7 @@ an object (and cannot be a subclass of an object). Let's demonstrate this with a
 
 > List<Object> objectList = new ArrayList<String>(); // Compilation error
 
+
 Again, the reason the second line does not compile is that a list of objects is required, not a list of strings. 
 The first line compiles because a list of any unknown type is acceptable.
 
