@@ -385,6 +385,13 @@ gets awake when notify() or notifyAll() method is called | does not get awake wh
 not a static method | static method
 wait() is generaly used on condition | sleep() method is simply used to put your thread on sleep.
 
+Callable | Runnable
+-------- | --------
+It is mandatory to define call() method if we are dealing with the Callable interface. | It is mandatory to define the run() method if we are dealing with the Runnable interface.
+The return type of the call() method of the interface is an Object. Hence, the call() method returns an Object. | The return type of the run() method of the interface is void. Hence, the run() method returns void.
+The call() method can throw an exception. | The run() method cannot throw an exception.
+A thread cannot be created using the Callable interface. | A thread can be created using the Runnable interface.
+
 ## Executor Framework
 Java 5 has introduced new concurrent API called Executor frameworks, design and development of multi-thread applications. 
 It consists of mainly Executor, ExecutorService interface and ThreadPoolExecutor class which implements both interfaces i.e. Executor and ExecutorService. 
