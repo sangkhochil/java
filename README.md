@@ -295,7 +295,10 @@ One of advantage of Comparator over comparable is you can create anonymous compa
 ```
 
 ## Comparator vs Comparable
-Main difference is sorting algorithm implement in same class for comparable but comparator implement in different class or anonymously, Sorting will be diffirent if anyone want.
+
+- Comparable provides single sorting sequence while Comparator provides multiple sorting sequences.
+- Comparable affects the original class whereas comparator doesn’t affect the original class.
+- Is sorting algorithm implement in same class for comparable but comparator implement in different class or anonymously, Sorting will be diffirent if anyone want.
 
 # Multithreading
 
