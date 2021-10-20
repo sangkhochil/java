@@ -464,6 +464,12 @@ public class JavaCallableExample {
 ```
 
 ## Executor Framework
+
+A framework having a bunch of components that are used for managing worker threads efficiently is referred to as Executor Framework.
+The executor framework is an implementation of the Producer-Consumer pattern.
+
+It provides mechanisms for safely starting, closing down, submitting, executing, and blocking on the successful or abrupt termination of tasks (expressed as Runnable or Callable).
+
 Java 5 has introduced new concurrent API called Executor frameworks, design and development of multi-thread applications. 
 It consists of mainly Executor, ExecutorService interface and ThreadPoolExecutor class which implements both interfaces i.e. Executor and ExecutorService. 
 ThreadPoolExecutor class provide the implementation of thread pool.
