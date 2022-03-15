@@ -22,7 +22,14 @@ public class InDepthStream {
 	}
 	
 	//map() api
+	//stream map() api lets convert an object to something else.
 	public void example_2() {
 		empList.stream().map(e -> e.getName()).collect(Collectors.toList()).forEach(System.out::println);
+	}
+	
+	//collect()
+	//one of the common way to get stuff out of the stream once we are done all processing.
+	public void example_3() {
+		empList.stream().collect(Collectors.toList()).forEach(System.out::println);
 	}
 }
