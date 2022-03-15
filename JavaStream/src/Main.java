@@ -6,6 +6,7 @@ public class Main {
 		
 		//new CreateStream().Example();
 		//new StreamMap().Example();
-		new InDepthStream().example_1();
+		//new InDepthStream().example_1();2
+		new InDepthStream().example_2();
 	}
 }

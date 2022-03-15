@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InDepthStream {
 	private Employee[] arrayOfEmps = { new Employee(1, "Jeff Bezos", 100000.0), new Employee(2, "Bill Gates", 200000.0),
@@ -18,5 +19,10 @@ public class InDepthStream {
 			e.salaryIncrement(10.0);
 			System.out.println(String.format("%.1f", e.salary));
 		});
+	}
+	
+	//map() api
+	public void example_2() {
+		empList.stream().map(e -> e.getName()).collect(Collectors.toList()).forEach(System.out::println);
 	}
 }
