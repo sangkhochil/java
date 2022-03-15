@@ -295,7 +295,10 @@ One of advantage of Comparator over comparable is you can create anonymous compa
 ```
 
 ## Comparator vs Comparable
-Main difference is sorting algorithm implement in same class for comparable but comparator implement in different class or anonymously, Sorting will be diffirent if anyone want.
+
+- Comparable provides single sorting sequence while Comparator provides multiple sorting sequences.
+- Comparable affects the original class whereas comparator doesn’t affect the original class.
+- Is sorting algorithm implement in same class for comparable but comparator implement in different class or anonymously, Sorting will be diffirent if anyone want.
 
 # Multithreading
 
@@ -385,7 +388,91 @@ gets awake when notify() or notifyAll() method is called | does not get awake wh
 not a static method | static method
 wait() is generaly used on condition | sleep() method is simply used to put your thread on sleep.
 
+Callable | Runnable
+-------- | --------
+It is mandatory to define call() method if we are dealing with the Callable interface. | It is mandatory to define the run() method if we are dealing with the Runnable interface.
+The return type of the call() method of the interface is an Object. Hence, the call() method returns an Object. | The return type of the run() method of the interface is void. Hence, the run() method returns void.
+The call() method can throw an exception. | The run() method cannot throw an exception.
+A thread cannot be created using the Callable interface. | A thread can be created using the Runnable interface.
+
+Callable Interface also using in Thread with FutureTask
+
+```java
+
+import java.util.concurrent.Callable;
+import java.util.Random;
+
+// importing the concrete class FutureTask  
+import java.util.concurrent.FutureTask;
+
+class JavaCallable implements Callable {
+	@Override
+	public Object call() throws Exception {
+// Creating an object of the  Random class   
+		Random randObj = new Random();
+
+// generating a random number between 0 to 9  
+		Integer randNo = randObj.nextInt(10);
+
+// the thread is delayed for some random time  
+		Thread.sleep(randNo * 1000);
+
+// return the object that contains the   
+// generated random number  
+		return randNo;
+	}
+}
+
+public class JavaCallableExample {
+	// main method
+	public static void main(String argvs[]) throws Exception {
+
+		// FutureTask is the concrete class
+		// creating an array of 5 objects of the FutureTask class
+		FutureTask[] randomNoTasks = new FutureTask[10];
+
+		// loop for spawning 10 threads
+		for (int j = 0; j < 10; j++) {
+			// Creating a new object of the JavaCallable class
+			Callable clble = new JavaCallable();
+
+			// Creating the FutureTask with Callable
+			randomNoTasks[j] = new FutureTask(clble);
+
+			// Since FutureTask implements Runnable,
+			// one can create a Thread
+			// with a FutureTask object
+			Thread th = new Thread(randomNoTasks[j]);
+			th.start();
+		}
+
+		// loop for receiving the random numbers
+		for (int j = 0; j < 10; j++) {
+
+			// invoking the get() method
+			Object o = randomNoTasks[j].get();
+
+			// The get method holds the control until the result is received
+			// The get method may throw the checked exceptions
+			// like when the method is interrupted. Because of this reason
+			// we have to add the throws clause to the main method
+
+			// printing the generated random number
+			System.out.println("The random number is: " + o);
+
+		}
+	}
+}
+
+```
+
 ## Executor Framework
+
+A framework having a bunch of components that are used for managing worker threads efficiently is referred to as Executor Framework.
+The executor framework is an implementation of the Producer-Consumer pattern.
+
+It provides mechanisms for safely starting, closing down, submitting, executing, and blocking on the successful or abrupt termination of tasks (expressed as Runnable or Callable).
+
 Java 5 has introduced new concurrent API called Executor frameworks, design and development of multi-thread applications. 
 It consists of mainly Executor, ExecutorService interface and ThreadPoolExecutor class which implements both interfaces i.e. Executor and ExecutorService. 
 ThreadPoolExecutor class provide the implementation of thread pool.
