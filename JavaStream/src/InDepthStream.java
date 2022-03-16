@@ -1,6 +1,9 @@
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -110,5 +113,30 @@ public class InDepthStream {
 		empList.stream().sorted((e1,e2)->e1.getId() - e2.getId()).forEach(System.out::println);
 		System.out.println("bySalary:");
 		empList.stream().sorted((e1,e2)-> (int)(e1.getSalary() - e2.getSalary())).forEach(System.out::println);
+	}
+	
+	public void example_12() {
+		Employee emp = empList.stream().min((e1, e2) -> e1.getId() - e2.getId()).orElseThrow(NoSuchElementException::new);
+		System.out.println(emp);
+		
+		emp = empList.stream().max(Comparator.comparing(Employee::getSalary)).orElseThrow(NoSuchElementException::new);
+		System.out.println(emp);
+	}
+	
+	public void example_13() {
+		 List<Integer> intList = Arrays.asList(2, 5, 3, 2, 4, 3);
+		 List<Integer> distinct_list = intList.stream().distinct().collect(Collectors.toList());
+		 System.out.println(distinct_list);
+	}
+	
+	public void example_14() {
+		List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
+	    
+	    boolean allEven = intList.stream().allMatch(i -> i % 2 == 0);
+	    System.out.println(allEven);
+	    boolean oneEven = intList.stream().anyMatch(i -> i % 2 == 0);
+	    System.out.println(oneEven);
+	    boolean noneMultipleOfThree = intList.stream().noneMatch(i -> i % 3 == 0);
+	    System.out.println(noneMultipleOfThree);
 	}
 }
