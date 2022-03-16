@@ -139,4 +139,15 @@ public class InDepthStream {
 	    boolean noneMultipleOfThree = intList.stream().noneMatch(i -> i % 3 == 0);
 	    System.out.println(noneMultipleOfThree);
 	}
+	
+	public void example_15() {
+		int value = empList.stream().mapToInt(Employee::getId).max().orElseThrow(NoSuchElementException::new);
+		System.out.println(value);
+		
+		Double avarage = empList.stream().mapToDouble(Employee::getSalary).average().orElseThrow(NoSuchElementException::new);
+		System.out.println(avarage);
+		
+		Double sum = empList.stream().map(Employee::getSalary).reduce(0.0, Double::sum);
+		System.out.println(sum);
+	}
 }
