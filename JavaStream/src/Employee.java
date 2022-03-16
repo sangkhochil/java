@@ -42,6 +42,9 @@ public class Employee {
 	public void salaryIncrement(double rate) {
 		this.salary = (1 + (rate / 100)) * this.salary;
 	}
+	public void salaryFormate() {
+		this.salary = Double.parseDouble(String.format("%.1f", this.salary));
+	}
 	
 	public static Employee getById(int id) {
 		return Stream.of(arrayOfEmps).filter(e->e.getId() == id).findFirst().orElse(null);

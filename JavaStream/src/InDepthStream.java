@@ -41,29 +41,39 @@ public class InDepthStream {
 		empList.stream().map(e -> e.getId()).filter(e -> e.intValue() >= 2).forEach(System.out::println);
 	}
 
-	//	findFirst()
-	//	findFirst() returns an Optional for the first entry in the stream; 
+	// findFirst()
+	// findFirst() returns an Optional for the first entry in the stream;
 	public void example_5() {
 		Integer[] empIds = { 1, 2, 3, 4 };
 		Employee emp = Stream.of(empIds).map(Employee::getById).filter(e -> e != null)
 				.filter(e -> e.getSalary() >= 200000).findFirst().orElse(null);
 		System.out.println(emp);
 	}
-	
-	//toArray()
+
+	// toArray()
 	public void example_6() {
 		Employee[] array = empList.stream().toArray(Employee[]::new);
 		Stream.of(array).forEach(System.out::println);
 	}
-	
-	//flatMap()
-	//flatMap lets to flatten  the data structure to simplify further operations
+
+	// flatMap()
+	// flatMap lets to flatten the data structure to simplify further operations
 	public void example_7() {
-		List<Integer> l1 = List.of(1,2,3);
-		List<Integer> l2 = List.of(2,3,4);
-		List<Integer> l3 = List.of(3,4,5);
-		
-		Stream.of(l1,l2,l3).forEach(e-> System.out.println(e));
-		Stream.of(l1,l2,l3).distinct().flatMap(Collection::stream).forEach(System.out::println);
+		List<Integer> l1 = List.of(1, 2, 3);
+		List<Integer> l2 = List.of(2, 3, 4);
+		List<Integer> l3 = List.of(3, 4, 5);
+
+		Stream.of(l1, l2, l3).forEach(e -> System.out.println(e));
+		Stream.of(l1, l2, l3).distinct().flatMap(Collection::stream).forEach(System.out::println);
+	}
+	//peek()
+	//when we need multiple operation for each element on stream, we can use peek for intermediate operator for applied any terminal operation
+	public void example_8() {
+		empList.stream()
+				.peek(e -> e.salaryIncrement(10))
+				.peek(e -> e.salaryFormate())
+				.peek(System.out::println)
+				.collect(Collectors.toList());
+
 	}
 }
