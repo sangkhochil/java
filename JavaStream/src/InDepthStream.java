@@ -189,4 +189,11 @@ public class InDepthStream {
 		System.out.println(partition.get(true).size());
 		System.out.println(partition.get(false).size());
 	}
+	
+	public void example_19() {
+		Map<Character, List<Employee>> groupBy = empList.stream().collect(Collectors.groupingBy(e->new Character(e.getName().charAt(0))));
+		System.out.println(groupBy.get('M'));
+		System.out.println(groupBy.get('J'));
+		System.out.println(groupBy.get('B'));
+	}
 }
