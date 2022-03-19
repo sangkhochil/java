@@ -208,4 +208,10 @@ public class InDepthStream {
 		System.out.println(groupBy.get('J').get(0));
 		System.out.println(groupBy.get('M').get(0));
 	}
+	
+	public void example_21() {
+	    Stream.generate(Math::random)
+	      .limit(5)
+	      .forEach(System.out::println);
+	}
 }
