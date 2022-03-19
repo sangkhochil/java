@@ -1,8 +1,13 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.Vector;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -149,5 +154,39 @@ public class InDepthStream {
 		
 		Double sum = empList.stream().map(Employee::getSalary).reduce(0.0, Double::sum);
 		System.out.println(sum);
+	}
+	
+	public void example_16() {
+		String str = empList.stream().map(Employee::getName).collect(Collectors.joining(", "));
+		System.out.println(str);
+		
+		Set<String> nameSet = empList.stream().map(Employee::getName).collect(Collectors.toSet());
+		System.out.println(nameSet);
+		
+		Vector<String> empNames = empList.stream()
+	            .map(Employee::getName)
+	            .collect(Collectors.toCollection(Vector::new));
+		System.out.println(empNames);
+		
+		ArrayList<String> arrayList = empList.stream()
+	            .map(Employee::getName)
+	            .collect(Collectors.toCollection(ArrayList::new));
+		System.out.println(arrayList);
+	}
+	
+	public void example_17() {
+		DoubleSummaryStatistics state = empList.stream().collect(Collectors.summarizingDouble(Employee::getSalary));
+		System.out.println(state.getCount());
+		System.out.println(state.getAverage());
+		System.out.println(state.getMax());
+		System.out.println(state.getMin());
+		System.out.println(state.getSum());
+	}
+	
+	public void example_18() {
+		List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
+		Map<Boolean, List<Integer>> partition = intList.stream().collect(Collectors.partitioningBy(x->x%2 == 0));
+		System.out.println(partition.get(true).size());
+		System.out.println(partition.get(false).size());
 	}
 }
