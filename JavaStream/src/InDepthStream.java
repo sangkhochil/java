@@ -87,93 +87,94 @@ public class InDepthStream {
 	// Some operations are deemed short-circuiting operations.
 	// Short-circuiting operations allow computations on infinite streams to
 	// complete in finite time:
-	
-	//Here, we use short-circuiting operations skip() to skip first 3 elements, 
-	//and limit() to limit to 5 elements from the infinite stream generated using iterate().
+
+	// Here, we use short-circuiting operations skip() to skip first 3 elements,
+	// and limit() to limit to 5 elements from the infinite stream generated using
+	// iterate().
 	public void example_9() {
 		Stream short_circuite = Stream.iterate(2, i -> i * 2);
-		
-		short_circuite
-			.skip(3)
-			.limit(5)
-			.forEach(System.out::println);
+
+		short_circuite.skip(3).limit(5).forEach(System.out::println);
 	}
-	//	Lazy Evaluation
-	//	One of the most important characteristics of Java streams is that they allow for significant optimizations through lazy evaluations.
+	// Lazy Evaluation
+	// One of the most important characteristics of Java streams is that they allow
+	// for significant optimizations through lazy evaluations.
 	//
-	//	Computation on the source data is only performed when the terminal operation is initiated, and source elements are consumed only as needed.
+	// Computation on the source data is only performed when the terminal operation
+	// is initiated, and source elements are consumed only as needed.
 	//
-	//	All intermediate operations are lazy, so they’re not executed until a result of a processing is actually needed.
-	
+	// All intermediate operations are lazy, so they’re not executed until a result
+	// of a processing is actually needed.
+
 	public void example_10() {
 		Integer[] empIds = { 1, 2, 3, 4 };
-		Employee emp = Stream.of(empIds).map(Employee::getById).filter(e->e!=null).filter(e->e.salary>=200000).findFirst().orElse(null);
+		Employee emp = Stream.of(empIds).map(Employee::getById).filter(e -> e != null).filter(e -> e.salary >= 200000)
+				.findFirst().orElse(null);
 		System.out.println(emp);
 	}
-	
+
 	public void example_11() {
 		System.out.println("byName:");
-		empList.stream().sorted((e1,e2)->e1.getName().compareTo(e2.getName())).forEach(System.out::println);
+		empList.stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName())).forEach(System.out::println);
 		System.out.println("byId:");
-		empList.stream().sorted((e1,e2)->e1.getId() - e2.getId()).forEach(System.out::println);
+		empList.stream().sorted((e1, e2) -> e1.getId() - e2.getId()).forEach(System.out::println);
 		System.out.println("bySalary:");
-		empList.stream().sorted((e1,e2)-> (int)(e1.getSalary() - e2.getSalary())).forEach(System.out::println);
+		empList.stream().sorted((e1, e2) -> (int) (e1.getSalary() - e2.getSalary())).forEach(System.out::println);
 	}
-	
+
 	public void example_12() {
-		Employee emp = empList.stream().min((e1, e2) -> e1.getId() - e2.getId()).orElseThrow(NoSuchElementException::new);
+		Employee emp = empList.stream().min((e1, e2) -> e1.getId() - e2.getId())
+				.orElseThrow(NoSuchElementException::new);
 		System.out.println(emp);
-		
+
 		emp = empList.stream().max(Comparator.comparing(Employee::getSalary)).orElseThrow(NoSuchElementException::new);
 		System.out.println(emp);
 	}
-	
+
 	public void example_13() {
-		 List<Integer> intList = Arrays.asList(2, 5, 3, 2, 4, 3);
-		 List<Integer> distinct_list = intList.stream().distinct().collect(Collectors.toList());
-		 System.out.println(distinct_list);
+		List<Integer> intList = Arrays.asList(2, 5, 3, 2, 4, 3);
+		List<Integer> distinct_list = intList.stream().distinct().collect(Collectors.toList());
+		System.out.println(distinct_list);
 	}
-	
+
 	public void example_14() {
 		List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
-	    
-	    boolean allEven = intList.stream().allMatch(i -> i % 2 == 0);
-	    System.out.println(allEven);
-	    boolean oneEven = intList.stream().anyMatch(i -> i % 2 == 0);
-	    System.out.println(oneEven);
-	    boolean noneMultipleOfThree = intList.stream().noneMatch(i -> i % 3 == 0);
-	    System.out.println(noneMultipleOfThree);
+
+		boolean allEven = intList.stream().allMatch(i -> i % 2 == 0);
+		System.out.println(allEven);
+		boolean oneEven = intList.stream().anyMatch(i -> i % 2 == 0);
+		System.out.println(oneEven);
+		boolean noneMultipleOfThree = intList.stream().noneMatch(i -> i % 3 == 0);
+		System.out.println(noneMultipleOfThree);
 	}
-	
+
 	public void example_15() {
 		int value = empList.stream().mapToInt(Employee::getId).max().orElseThrow(NoSuchElementException::new);
 		System.out.println(value);
-		
-		Double avarage = empList.stream().mapToDouble(Employee::getSalary).average().orElseThrow(NoSuchElementException::new);
+
+		Double avarage = empList.stream().mapToDouble(Employee::getSalary).average()
+				.orElseThrow(NoSuchElementException::new);
 		System.out.println(avarage);
-		
+
 		Double sum = empList.stream().map(Employee::getSalary).reduce(0.0, Double::sum);
 		System.out.println(sum);
 	}
-	
+
 	public void example_16() {
 		String str = empList.stream().map(Employee::getName).collect(Collectors.joining(", "));
 		System.out.println(str);
-		
+
 		Set<String> nameSet = empList.stream().map(Employee::getName).collect(Collectors.toSet());
 		System.out.println(nameSet);
-		
-		Vector<String> empNames = empList.stream()
-	            .map(Employee::getName)
-	            .collect(Collectors.toCollection(Vector::new));
+
+		Vector<String> empNames = empList.stream().map(Employee::getName).collect(Collectors.toCollection(Vector::new));
 		System.out.println(empNames);
-		
-		ArrayList<String> arrayList = empList.stream()
-	            .map(Employee::getName)
-	            .collect(Collectors.toCollection(ArrayList::new));
+
+		ArrayList<String> arrayList = empList.stream().map(Employee::getName)
+				.collect(Collectors.toCollection(ArrayList::new));
 		System.out.println(arrayList);
 	}
-	
+
 	public void example_17() {
 		DoubleSummaryStatistics state = empList.stream().collect(Collectors.summarizingDouble(Employee::getSalary));
 		System.out.println(state.getCount());
@@ -182,18 +183,29 @@ public class InDepthStream {
 		System.out.println(state.getMin());
 		System.out.println(state.getSum());
 	}
-	
+
 	public void example_18() {
 		List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
-		Map<Boolean, List<Integer>> partition = intList.stream().collect(Collectors.partitioningBy(x->x%2 == 0));
+		Map<Boolean, List<Integer>> partition = intList.stream().collect(Collectors.partitioningBy(x -> x % 2 == 0));
 		System.out.println(partition.get(true).size());
 		System.out.println(partition.get(false).size());
 	}
-	
+
 	public void example_19() {
-		Map<Character, List<Employee>> groupBy = empList.stream().collect(Collectors.groupingBy(e->new Character(e.getName().charAt(0))));
+		Map<Character, List<Employee>> groupBy = empList.stream()
+				.collect(Collectors.groupingBy(e -> new Character(e.getName().charAt(0))));
 		System.out.println(groupBy.get('M'));
 		System.out.println(groupBy.get('J'));
 		System.out.println(groupBy.get('B'));
+	}
+
+	public void example_20() {
+		Map<Character, List<Integer>> groupBy = empList.stream()
+				.collect(Collectors.groupingBy(e -> new Character(e.getName().charAt(0)),
+						Collectors.mapping(Employee::getId, Collectors.toList())));
+		
+		System.out.println(groupBy.get('B').get(0));
+		System.out.println(groupBy.get('J').get(0));
+		System.out.println(groupBy.get('M').get(0));
 	}
 }
