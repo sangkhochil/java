@@ -214,4 +214,14 @@ public class InDepthStream {
 	      .limit(5)
 	      .forEach(System.out::println);
 	}
+	
+	public void example_22() {
+		Stream<Integer> evenNumStream = Stream.iterate(2, i -> i * 2);
+
+	    List<Integer> collect = evenNumStream
+	      .limit(5)
+	      .collect(Collectors.toList());
+	    
+	    System.out.println(collect);
+	}
 }
