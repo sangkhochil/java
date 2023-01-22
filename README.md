@@ -1,5 +1,8 @@
 # Common
-
+### What is Object-Oriented Programming (OOP)?
+Object-oriented programming (OOP) is a programming paradigm based on the concept of "objects", which can contain data and procedure.
+###What is Java? 
+Java is a high-level programming language that was developed by James Gosling in the year 1982. It is based on the principles of object-oriented programming and can be used to develop large-scale applications.  
 ### HashCode
 The hashcode of a Java Object is simply a number, it is 32-bit signed int, that allows an object to be managed by a hash-based data structure.
 We know that hash code is an unique id number allocated to an object by JVM. ...
