@@ -7,7 +7,7 @@ Java is a high-level programming language that was developed by James Gosling in
 Java language was developed in such a way that it does not depend on any hardware or software due to the fact that the compiler compiles the code and then converts it to platform-independent byte code which can be run on multiple systems.
 
 The only condition to run that byte code is for the machine to have a runtime environment (JRE) installed in it
-###Why is Java not a pure object oriented language?
+### Why is Java not a pure object oriented language?
 Java supports primitive data types - byte, boolean, char, short, int, float, long, and double and hence it is not a pure object oriented language.
 ### HashCode
 The hashcode of a Java Object is simply a number, it is 32-bit signed int, that allows an object to be managed by a hash-based data structure.
