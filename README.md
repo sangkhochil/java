@@ -1,6 +1,6 @@
 # Common
 ### What is Object-Oriented Programming (OOP)?
-Object-oriented programming (OOP) is a programming paradigm based on the concept of "objects", which can contain data and procedure.
+Object-oriented programming (OOP) is a programming paradigm based on the concept of "objects", which can contain data(field) and procedure(function).
 ### What is Java? 
 Java is a high-level programming language that was developed by James Gosling in the year 1982. It is based on the principles of object-oriented programming and can be used to develop large-scale applications.
 ### Why is Java a platform independent language?
@@ -9,6 +9,8 @@ Java language was developed in such a way that it does not depend on any hardwar
 The only condition to run that byte code is for the machine to have a runtime environment (JRE) installed in it
 ### Why is Java not a pure object oriented language?
 Java supports primitive data types - byte, boolean, char, short, int, float, long, and double and hence it is not a pure object oriented language.
+### Difference between Heap and Stack Memory in java. And how java utilizes this.
+Stack memory is the portion of s memory, it's assigged to individual program & fixed. But other hand heap memory is a portion of memoty that's not allocated for individual program but it 's use based program needs on program execution time.
 ### HashCode
 The hashcode of a Java Object is simply a number, it is 32-bit signed int, that allows an object to be managed by a hash-based data structure.
 We know that hash code is an unique id number allocated to an object by JVM. ...
@@ -38,7 +40,7 @@ If a switch contains more than five items, it’s implemented using a lookup tab
 
 ## Why main method declear as public static?
 Java main() method is always static, so that compiler can call it without the creation of an object or before the creation of an object of the class.
-
+vbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 * In any Java program, the main() method is the starting point from where compiler starts program execution. So, the compiler needs to call the main() method.
 * If the main() is allowed to be non-static, then while calling the main() method JVM has to instantiate its class.
 * While instantiating it has to call the constructor of that class, There will be ambiguity if the constructor of that class takes an argument.
