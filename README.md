@@ -136,6 +136,9 @@ Making variables private
 Providing getters and setters methods for the accessing the variables.
 
 * Encapsulation is also termed as data hiding because you are making variables private and variables can be only excessed through public getters and setters.
+  
+## Inheritance
+* The capability of a class to derive properties and characteristics from another class is called Inheritance. Inheritance is one of the most important features of Object-Oriented Programming. 
 
 ### Advantages of Encapsulation in java:
 * It provides control over data. For example: If we want to check if age of employee is greater than 18 in setter method(setAge(int age)). we can easily do it in setter method without breaking any code. 
