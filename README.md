@@ -79,6 +79,11 @@ Interface is generally used to provide contract for class to implement. Interfac
 So it is kind of signing a contract, you agree that if you implement this interface, then you have to use its methods.It is just a pattern, it can not do anything itself.
 
 All the methods in the interface are by default public and abstract and all variables are public static final.
+An interface in Java is a blueprint of a class. It has static constants and abstract methods.
+
+The interface in Java is a mechanism to achieve abstraction. There can be only abstract methods in the Java interface, not method body. It is used to achieve abstraction and multiple inheritance in Java.
+
+In other words, you can say that interfaces can have abstract methods and variables. It cannot have a method body.
 
 ## Abstract class
 An abstract class is the class which is declared abstract and can have abstract or non abstract methods. 
