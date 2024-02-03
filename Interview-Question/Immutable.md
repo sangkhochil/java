@@ -18,26 +18,28 @@ Make our class final :
 
 ### 3. Can we answer if below Employee class is immutable or not? If not what will we do to make it immutable?
 ```java
-public final class Employee { 
- private final String name;
- private final ArrayList addresses;
- public Employee(String name, ArrayList addresses) {
- super();
- this.name = name;
- ArrayList tempAdd=new ArrayList();
- for (int i = 0; i < addresses.size(); i++) {
- tempAdd.add(addresses.get(i));
- }
- this.addresses = tempAdd;
- }
- 
- public String getName() {
- return name;
- }
- public ArrayList getAddresses() {
- return addresses;
- } 
-} 
+public final class Employee {
+	private final String name;
+	private final ArrayList addresses;
+
+	public Employee(String name, ArrayList addresses) {
+		super();
+		this.name = name;
+		ArrayList tempAdd = new ArrayList();
+		for (int i = 0; i < addresses.size(); i++) {
+			tempAdd.add(addresses.get(i));
+		}
+		this.addresses = tempAdd;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public ArrayList getAddresses() {
+		return addresses;
+	}
+}
 ```
 Employee class is not an immutable class because we can still perform employee.getAddresses().add(“New address”) and it will be added to employee’s addresses list.
 
