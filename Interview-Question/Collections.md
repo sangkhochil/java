@@ -37,6 +37,11 @@ Explanation:
 As String class overrides hashcode and equals method, it won’t allow the same string twice in HashSet, but we did not implement hashcode and equals method for Country class, 
 so each object will have different hashcode hence can be inserted in HashSet.
 
+**1. There's no need to call equals if hashCode differs.
+2. There's no need to call hashCode if (obj1 == obj2).
+3. There's no need for hashCode and/or equals just to iterate - you're not comparing objects
+4. When needed to distinguish in between objects.**
+
 ### 2. What can be output of below code
 ```java
  
